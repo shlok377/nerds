@@ -6,7 +6,9 @@
   "main": "bin/nerds-init.js",
   "bin": {
     "nerds": "bin/nerds-init.js",
-    "nerds-init": "bin/nerds-init.js"
+    "nerds-init": "bin/nerds-init.js",
+    "shlok377/nerds": "bin/nerds-init.js",
+    "@shlok377/nerds": "bin/nerds-init.js"
   },
   "repository": {
     "type": "git",
