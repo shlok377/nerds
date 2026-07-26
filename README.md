@@ -8,10 +8,10 @@
 
 Run either of these single-line commands in your terminal inside any blank or existing web repository:
 
-### Method 1: Direct URL Script Method (Recommended)
+### Method 1: Direct Interactive Installer (Recommended)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/shlok377/nerds/main/bin/nerds-init.js | node
+curl -fsSL https://raw.githubusercontent.com/shlok377/nerds/main/install.sh | bash
 ```
 
 ### Method 2: NPX Remote Command
@@ -24,7 +24,7 @@ npx github:shlok377/nerds init
 
 ## Setup Workflow
 
-Running either command launches an interactive, clutter-free TUI wizard that configures your project on-demand:
+Running the installer launches a clean, interactive TUI wizard that configures your project on-demand:
 
 ```
 +-------------------------------------------------------------+
