@@ -1,9 +1,10 @@
 /* ==========================================================================
-   NERDS DESIGN SYSTEM (Obsidian Charcoal Anti-Slop Standard)
+   NERDS DESIGN SYSTEM (Obsidian Charcoal Anti-Slop Standard v2)
    Anti-Slop Directives:
      1. ZERO EMOJIS in web UI (Use SVG icons or text only).
      2. ZERO Blinking/Glowing LED dots (Pulsing animations banned).
-     3. ZERO Generic Dark Blue background slop & glowing blue neon vignettes.
+     3. ZERO Dark Blue background slop & ZERO glowing blue/cyan neon vignettes.
+     4. ZERO heavy glowing viewport box-shadows.
    ========================================================================== */
 
 :root {
@@ -78,6 +79,7 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
+  box-shadow: none !important; /* Ban outer blue viewport glowing vignettes */
 }
 
 /* Typography Hierarchy */
@@ -121,6 +123,7 @@ code, pre {
 
 .btn-primary:hover {
   background-color: var(--accent-primary-hover);
+  box-shadow: none !important;
 }
 
 .btn-outline {
@@ -132,6 +135,7 @@ code, pre {
 .btn-outline:hover {
   background-color: var(--bg-elevated);
   border-color: var(--text-secondary);
+  box-shadow: none !important;
 }
 
 /* Cards & Surface Containers */
@@ -146,6 +150,7 @@ code, pre {
 
 .card:hover {
   border-color: var(--border-default);
+  box-shadow: var(--shadow-subtle);
 }
 
 /* Static Clean Badges (Zero Blinking LEDs) */

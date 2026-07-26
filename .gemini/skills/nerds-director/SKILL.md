@@ -22,13 +22,13 @@ Every web application built or edited by NERDS MUST follow the proprietary **NER
    - Glowing/pulsing green dots (`● LIVE`, `● STREAMING`) are overused AI clichés.
    - **Enforced Rule**: Use static text badges, subtle 1px border pill tags, or clean status text without blinking animations.
 
-3. **NO GENERIC DARK BLUE SLOP & GLOWING BLUE BOX-SHADOWS**:
-   - Overused navy/dark blue backgrounds (`#0f172a`, `#1e293b`) with heavy blue glowing box-shadow vignettes are lazy AI design.
+3. **NO GENERIC DARK BLUE SLOP & GLOWING BLUE BOX-SHADOW VIGNETTES**:
+   - Overused navy/dark blue backgrounds (`#0f172a`, `#1e293b`) with heavy blue glowing box-shadow vignettes running down the viewport edges are lazy AI design.
    - **Enforced Rule**: Use **Obsidian Charcoal Neutral Palette**:
      - Base Background: `hsl(220, 18%, 7%)` (`#0c0e12`)
      - Surface Cards: `hsl(220, 16%, 11%)` (`#14171f`)
      - Elevated Borders: `hsl(220, 12%, 18%)` (`#1c202b`)
-     - Crisp 1px solid borders, zero fake blue neon glows.
+     - Crisp 1px solid borders, `box-shadow: none !important` on outer viewport frames, zero fake blue neon glows.
 
 4. **NO BOILERPLATE HERO TEMPLATES**:
    - Every header & dashboard section must be bespoke, functional, and domain-tailored.
@@ -44,7 +44,7 @@ Every task executed by NERDS MUST pass through our native 5-role quality gate:
 2. **Architect EM**:
    - Plans modular file boundaries (`src/core/`, `src/features/`), isolating interfaces to prevent partner collisions.
 3. **Lead Designer**:
-   - Audits code to ensure ZERO emojis, ZERO blinking LEDs, ZERO dark blue slop glows, and applies Obsidian Charcoal design tokens.
+   - Audits code to ensure ZERO emojis, ZERO blinking LEDs, ZERO dark blue slop glows/vignettes, and applies Obsidian Charcoal design tokens.
 4. **QA Lead**:
    - Executes build/lint checks and launches Antigravity's `browser_subagent` to render pages, click interactive buttons, and capture visual proof screenshots/recordings.
 5. **Security Auditor**:
