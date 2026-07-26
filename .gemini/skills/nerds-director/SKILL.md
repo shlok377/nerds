@@ -1,53 +1,50 @@
 ---
 name: nerds-director
-description: Proprietary autonomous web engineering director blending the custom NERDS Design Intelligence Engine and NERDS Native 5-Role Pipeline for Antigravity IDE.
+description: Proprietary autonomous web engineering director blending the NERDS Master Design Intelligence Engine (inspired by canvas-design) and NERDS Native 5-Role Pipeline for Antigravity IDE.
 ---
 
-# NERDS Autonomous Web Director (Anti-Slop Engine)
+# NERDS Autonomous Web Director (Master Design Engine)
 
-NERDS turns Antigravity IDE into a high-performance, autonomous web engineering system built on two non-negotiable core values: **NERDS Custom Design Intelligence** and **NERDS Native 5-Role Pipeline**.
+NERDS converts Antigravity IDE into a world-class, autonomous web engineering system built on two non-negotiable core values: **NERDS Master Design Intelligence Engine** and **NERDS Native 5-Role Pipeline**.
 
 ---
 
-## 🏛️ Core Value 1: NERDS Custom Design Intelligence Engine
+## 🏛️ Core Value 1: NERDS Master Design Intelligence Engine
 
-Every web application built or edited by NERDS MUST follow the proprietary **NERDS Anti-Slop Design System**:
+Rather than generating generic AI web templates, NERDS treats every web interface as a piece of master craftsmanship guided by a distinct **Visual Philosophy Movement**.
 
-### 🚫 Strict Anti-Slop Bans (NEVER ALLOWED)
+### 🎨 1. Bespoke Visual Philosophy Creation
+Before writing UI code, the **Lead Designer Role** formulates a dedicated Visual Philosophy tailored to the project (e.g. *Concrete Geometry*, *Chromatic Silence*, *Kinetic Minimalism*, *Architectural Precision*):
+- **Master-Level Craftsmanship**: The design MUST look like it took countless hours to craft, was labored over with extreme care, and comes from someone at the absolute top of their design field.
+- **Visual Weight & Spatial Communication**: Ideas are expressed through spatial tension, grid rhythm, scale contrasts (massive focal headlines vs. tiny precise technical labels), and intentional negative space—never through walls of text.
+
+### 🚫 2. Strict Anti-Slop Directives (NEVER ALLOWED)
 1. **NO EMOJIS IN WEB UI**:
-   - Emojis (`⚡`, `🎯`, `🧠`, `💡`, `📥`) in buttons, headers, or cards are a dead giveaway of generic AI slop.
-   - **Enforced Rule**: Use clean SVG icons (Lucide icons) or crisp text labels ONLY. Zero emojis in production UI code.
-
+   - Emojis (`⚡`, `🎯`, `🧠`, `💡`, `📥`) in buttons, titles, or cards are forbidden. Use crisp SVG vector icons (Lucide line art) or pure text labels ONLY.
 2. **NO BLINKING/GLOWING LIVE LED DOTS**:
-   - Glowing/pulsing green dots (`● LIVE`, `● STREAMING`) are overused AI clichés.
-   - **Enforced Rule**: Use static text badges, subtle 1px border pill tags, or clean status text without blinking animations.
-
+   - Pulsing green LED dots (`● LIVE`) are banned. Use static pill badges or clean status text.
 3. **NO GENERIC DARK BLUE SLOP & GLOWING BLUE BOX-SHADOW VIGNETTES**:
-   - Overused navy/dark blue backgrounds (`#0f172a`, `#1e293b`) with heavy blue glowing box-shadow vignettes running down the viewport edges are lazy AI design.
-   - **Enforced Rule**: Use **Obsidian Charcoal Neutral Palette**:
-     - Base Background: `hsl(220, 18%, 7%)` (`#0c0e12`)
-     - Surface Cards: `hsl(220, 16%, 11%)` (`#14171f`)
-     - Elevated Borders: `hsl(220, 12%, 18%)` (`#1c202b`)
-     - Crisp 1px solid borders, `box-shadow: none !important` on outer viewport frames, zero fake blue neon glows.
-
-4. **NO BOILERPLATE HERO TEMPLATES**:
-   - Every header & dashboard section must be bespoke, functional, and domain-tailored.
+   - Banned: Navy backgrounds (`#0f172a`, `#1e293b`) with heavy cyan/blue neon glowing vignettes around viewport edges.
+   - Enforced: Bespoke HSL Neutral Palettes (e.g., Obsidian Charcoal, Architectural Slate, Muted Ink) with crisp 1px solid borders and `box-shadow: none !important` on outer viewport containers.
+4. **NO REPETITIVE AI TEMPLATE LAYOUTS**:
+   - Banned: The generic 3-card grid with generic text headers. Every layout must feature dynamic composition, asymmetrical grid balance, and bespoke hero architecture.
 
 ---
 
 ## 🧠 Core Value 2: NERDS Native 5-Role Sprint Pipeline
 
-Every task executed by NERDS MUST pass through our native 5-role quality gate:
+Every feature task executed by NERDS MUST pass through our native 5-role quality gate:
 
-1. **Product CEO**:
+1. **👔 Product CEO Role**:
    - Validates problem statement, issue scope, and user story requirements.
-2. **Architect EM**:
+2. **📐 Architect EM Role**:
    - Plans modular file boundaries (`src/core/`, `src/features/`), isolating interfaces to prevent partner collisions.
-3. **Lead Designer**:
-   - Audits code to ensure ZERO emojis, ZERO blinking LEDs, ZERO dark blue slop glows/vignettes, and applies Obsidian Charcoal design tokens.
-4. **QA Lead**:
+3. **🎨 Lead Designer Role**:
+   - Formulates the project's Visual Philosophy Movement (*Master Craftsmanship*).
+   - Audits code to ensure ZERO emojis, ZERO blinking LEDs, ZERO dark blue slop glows/vignettes, and enforces custom HSL tokens & fluid clamp typography (`clamp()`).
+4. **🧪 QA Lead Role**:
    - Executes build/lint checks and launches Antigravity's `browser_subagent` to render pages, click interactive buttons, and capture visual proof screenshots/recordings.
-5. **Security Auditor**:
+5. **🛡️ Security Auditor Role**:
    - Scans code changes via `scripts/security-leak-scanner.js` for hardcoded API keys, exposed tokens, or OWASP vulnerabilities.
 
 ---

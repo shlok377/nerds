@@ -36,6 +36,13 @@ function getInteractiveInput() {
 }
 
 const inputSource = getInteractiveInput();
+readline.emitKeypressEvents(inputSource);
+
+// Single unified Readline interface to prevent stream collisions
+const mainRl = readline.createInterface({
+  input: inputSource,
+  output: process.stdout
+});
 
 const ANSI = {
   reset: '\x1b[0m',
@@ -55,7 +62,6 @@ function selectMenu(title, options, defaultIdx = 0) {
   return new Promise((resolve) => {
     let selectedIdx = defaultIdx;
 
-    readline.emitKeypressEvents(inputSource);
     if (inputSource.isTTY && typeof inputSource.setRawMode === 'function') {
       inputSource.setRawMode(true);
     }
@@ -99,6 +105,7 @@ function selectMenu(title, options, defaultIdx = 0) {
       if (inputSource.isTTY && typeof inputSource.setRawMode === 'function') {
         inputSource.setRawMode(false);
       }
+      inputSource.resume();
       process.stdout.write(ANSI.cursorShow);
     }
 
@@ -108,16 +115,9 @@ function selectMenu(title, options, defaultIdx = 0) {
 
 function inputPrompt(title, defaultValue = '') {
   return new Promise((resolve) => {
-    const rl = readline.createInterface({
-      input: inputSource,
-      output: process.stdout
-    });
-
+    inputSource.resume();
     const displayPrompt = `${title}${defaultValue ? ` [${defaultValue}]` : ''}: `;
-    process.stdout.write(`\n${ANSI.bold}${displayPrompt}${ANSI.reset}`);
-
-    rl.question('', (answer) => {
-      rl.close();
+    mainRl.question(`\n${ANSI.bold}${displayPrompt}${ANSI.reset}`, (answer) => {
       const val = answer.trim() || defaultValue;
       resolve(val);
     });
@@ -287,6 +287,8 @@ async function main() {
     console.log('+-------------------------------------------------------------+\n');
   } catch (err) {
     console.error(`${ANSI.red}[ERROR] Setup failed:${ANSI.reset}`, err);
+  } finally {
+    mainRl.close();
   }
 }
 
