@@ -9,6 +9,10 @@ import fs from 'fs';
 import path from 'path';
 import readline from 'readline';
 import { execSync } from 'child_process';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const targetProjectRoot = process.cwd();
 const envLocalPath = path.join(targetProjectRoot, '.env.local');
@@ -37,20 +41,17 @@ async function fetchRemoteFile(remotePath, outputPath) {
     const dir = path.dirname(outputPath);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
-    // Use curl or node fetch
     execSync(`curl -fsSL "${rawUrl}" -o "${outputPath}"`, { stdio: 'pipe' });
     console.log(`  ✓ Downloaded ${remotePath}`);
   } catch (err) {
-    // Fallback: If running locally inside repo, copy from script source
-    const scriptDir = path.dirname(new URL(import.meta.url).pathname);
-    const sourceLocalPath = path.join(scriptDir, '..', remotePath);
+    const sourceLocalPath = path.join(__dirname, '..', remotePath);
     if (fs.existsSync(sourceLocalPath)) {
       const dir = path.dirname(outputPath);
       if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
       fs.copyFileSync(sourceLocalPath, outputPath);
-      console.log(`  ✓ Installed ${remotePath} (local package source)`);
+      console.log(`  ✓ Installed ${remotePath} (package fallback)`);
     } else {
-      console.warn(`  ⚠️ Could not fetch ${remotePath} from ${rawUrl}`);
+      console.warn(`  ⚠️ Could not fetch ${remotePath}`);
     }
   }
 }
@@ -90,7 +91,6 @@ async function main() {
       const defaultLabel = `agent:${agentAlias.trim()}`;
       assignedLabel = (await askQuestion(`🏷️ Enter GitHub Issue Label to poll (default: ${defaultLabel}): `)) || defaultLabel;
 
-      // Save credentials safely in target .env.local
       const envContent = `# NERDS Local Secrets (STRICTLY GITIGNORED - DO NOT COMMIT)\nGITHUB_TOKEN=${githubToken.trim()}\nGITHUB_USERNAME=${githubUsername.trim()}\nAGENT_ALIAS=${agentAlias.trim()}\n`;
       fs.writeFileSync(envLocalPath, envContent, { mode: 0o600 });
       console.log('🔒 Credentials saved to local `.env.local` (0600 permissions)');
@@ -113,27 +113,23 @@ async function main() {
     // --- DOWNLOADING MODULE FILES ---
     console.log('\n📦 Downloading NERDS Core Values & Selected Modules into target project...');
 
-    // 1. Download Core Engine files (main branch)
     await fetchRemoteFile('.gemini/skills/nerds-director/SKILL.md', path.join(targetProjectRoot, '.gemini/skills/nerds-director/SKILL.md'));
     await fetchRemoteFile('src/design-system/theme.css', path.join(targetProjectRoot, 'src/design-system/theme.css'));
     await fetchRemoteFile('scripts/security-leak-scanner.js', path.join(targetProjectRoot, 'scripts/security-leak-scanner.js'));
 
     const installedModules = ['main (Core Values)'];
 
-    // 2. Download GitHub Manager files if selected
     if (enableGitManager) {
       await fetchRemoteFile('.nerds/scripts/git-pro-manager.js', path.join(targetProjectRoot, '.nerds/scripts/git-pro-manager.js'));
       await fetchRemoteFile('.nerds/scripts/github-poller.js', path.join(targetProjectRoot, '.nerds/scripts/github-poller.js'));
       installedModules.push('module/github-manager');
     }
 
-    // 3. Download Partner Sync files if team > 0
     if (teamMembers.length > 0) {
       await fetchRemoteFile('.nerds/scripts/coordination-sync.js', path.join(targetProjectRoot, '.nerds/scripts/coordination-sync.js'));
       installedModules.push('module/partner-sync');
     }
 
-    // Write Target .nerds.json Config Manifest
     const nerdsConfig = {
       $schema: 'https://raw.githubusercontent.com/nerds-stack/schema.json',
       repository: detectedRemote,
@@ -158,7 +154,6 @@ async function main() {
     fs.writeFileSync(nerdsConfigPath, JSON.stringify(nerdsConfig, null, 2));
     console.log('⚙️ Saved workspace configuration to `.nerds.json`');
 
-    // Ensure target .gitignore is configured
     let gitignoreContent = fs.existsSync(gitignorePath) ? fs.readFileSync(gitignorePath, 'utf8') : '';
     if (!gitignoreContent.includes('.env.local')) {
       gitignoreContent += '\n# NERDS Credentials Security\n.env.local\n.nerds/credentials.json\n';
