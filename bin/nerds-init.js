@@ -2,7 +2,10 @@
 
 /**
  * NERDS Autonomous Web Engineering Director - Interactive ANSI TUI Setup Wizard
- * Zero external dependencies. Native arrow-key navigation (UP/DOWN/ENTER).
+ * Workflow Order:
+ *  1. Ask Team Capacity & Teammates first.
+ *  2. If Team > 0, GitHub Manager is REQUIRED & Auto-Enabled to sync cross-LLM locks & issues on `sync/llm-coordination`.
+ *  3. If Team == 0, ask if GitHub Manager is wanted for solo issue automation.
  */
 
 import fs from 'fs';
@@ -20,7 +23,6 @@ const envLocalPath = path.join(targetProjectRoot, '.env.local');
 const nerdsConfigPath = path.join(targetProjectRoot, '.nerds.json');
 const gitignorePath = path.join(targetProjectRoot, '.gitignore');
 
-// Open /dev/tty directly for piped execution (e.g. curl | node)
 function getInteractiveInput() {
   if (process.stdin.isTTY) {
     return process.stdin;
@@ -35,7 +37,6 @@ function getInteractiveInput() {
 
 const inputSource = getInteractiveInput();
 
-// Color & ANSI Control Codes
 const ANSI = {
   reset: '\x1b[0m',
   bold: '\x1b[1m',
@@ -50,7 +51,6 @@ const ANSI = {
   cursorShow: '\x1b[?25h'
 };
 
-// Interactive Arrow-Key Selection Menu Component
 function selectMenu(title, options, defaultIdx = 0) {
   return new Promise((resolve) => {
     let selectedIdx = defaultIdx;
@@ -106,7 +106,6 @@ function selectMenu(title, options, defaultIdx = 0) {
   });
 }
 
-// Clean Text Input Component
 function inputPrompt(title, defaultValue = '') {
   return new Promise((resolve) => {
     const rl = readline.createInterface({
@@ -148,7 +147,7 @@ async function fetchRemoteFile(remotePath, outputPath) {
       const dir = path.dirname(outputPath);
       if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
       fs.copyFileSync(sourceLocalPath, outputPath);
-      console.log(`  ${ANSI.green}[OK]${ANSI.reset} ${remotePath} (local package fallback)`);
+      console.log(`  ${ANSI.green}[OK]${ANSI.reset} ${remotePath} (fallback)`);
     } else {
       console.warn(`  ${ANSI.yellow}[WARN]${ANSI.reset} Could not fetch ${remotePath}`);
     }
@@ -170,15 +169,40 @@ async function main() {
     const detectedRemote = getGitRemoteOrigin();
     console.log(`\n[Repository Context]: ${ANSI.cyan}${detectedRemote}${ANSI.reset}`);
 
-    // --- TUI SELECTION 1: GitHub Pro Manager Switch ---
-    const enableGitManager = await selectMenu(
-      'SELECT MODULE: Install GitHub Pro Manager?',
+    // --- STEP 1: SELECT TEAM CAPACITY FIRST ---
+    const teamCount = await selectMenu(
+      'STEP 1: Select Team Members & Partner LLMs Capacity:',
       [
-        { label: 'DISABLED (Recommended for Local Mode)', value: false, desc: '- Pure local assistant execution' },
-        { label: 'ENABLED  (GitHub Issue & PR Automation)', value: true, desc: '- Autonomous issue poller & atomic branch commits' }
+        { label: '0 Members (Solo Developer)', value: 0, desc: '- Minimal overhead' },
+        { label: '1 Member  (Dual Partnership)', value: 1, desc: '- Requires GitHub Manager for Cross-LLM sync' },
+        { label: '2 Members (Trio Team)', value: 2, desc: '- Requires GitHub Manager for Cross-LLM sync' },
+        { label: '3 Members (Quad Team)', value: 3, desc: '- Requires GitHub Manager for Cross-LLM sync' }
       ],
       0
     );
+
+    const teamMembers = [];
+    for (let i = 1; i <= teamCount; i++) {
+      const member = await inputPrompt(`  -> Username / alias for team member ${i}`);
+      if (member) teamMembers.push(member);
+    }
+
+    // --- STEP 2: CONFIGURE GITHUB PRO MANAGER ---
+    let enableGitManager = false;
+
+    if (teamCount > 0) {
+      console.log(`\n${ANSI.cyan}[AUTO-ENABLE] GitHub Pro Manager enabled automatically for Team Partnership (required for sync/llm-coordination & issue routing).${ANSI.reset}`);
+      enableGitManager = true;
+    } else {
+      enableGitManager = await selectMenu(
+        'STEP 2: Enable GitHub Pro Manager for Solo Issue Automation?',
+        [
+          { label: 'DISABLED (Recommended for Local Mode)', value: false, desc: '- Pure local assistant execution' },
+          { label: 'ENABLED  (GitHub Issue & PR Automation)', value: true, desc: '- Issue poller & atomic micro-commits' }
+        ],
+        0
+      );
+    }
 
     let githubUsername = '';
     let githubToken = '';
@@ -202,24 +226,6 @@ async function main() {
       console.log(`${ANSI.green}[SUCCESS] Saved credentials to .env.local (0600 permissions)${ANSI.reset}`);
     } else {
       console.log(`${ANSI.yellow}[INFO] GitHub Pro Manager disabled. Operating in local mode.${ANSI.reset}`);
-    }
-
-    // --- TUI SELECTION 2: Team Members Count Switch ---
-    const teamCount = await selectMenu(
-      'SELECT TEAM CAPACITY: How many team members / partner LLMs?',
-      [
-        { label: '0 Members (Solo Developer)', value: 0, desc: '- Minimal overhead' },
-        { label: '1 Member  (Dual Partnership)', value: 1, desc: '- Activates sync/llm-coordination lock channel' },
-        { label: '2 Members (Trio Team)', value: 2, desc: '- Activates multi-partner locks' },
-        { label: '3 Members (Quad Team)', value: 3, desc: '- Maximum team capacity' }
-      ],
-      0
-    );
-
-    const teamMembers = [];
-    for (let i = 1; i <= teamCount; i++) {
-      const member = await inputPrompt(`Username / alias for team member ${i}`);
-      if (member) teamMembers.push(member);
     }
 
     // --- DOWNLOADING MODULE FILES ---
