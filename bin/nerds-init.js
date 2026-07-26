@@ -7,6 +7,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import tty from 'tty';
 import readline from 'readline';
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
@@ -18,6 +19,21 @@ const targetProjectRoot = process.cwd();
 const envLocalPath = path.join(targetProjectRoot, '.env.local');
 const nerdsConfigPath = path.join(targetProjectRoot, '.nerds.json');
 const gitignorePath = path.join(targetProjectRoot, '.gitignore');
+
+// Open /dev/tty directly for piped execution (e.g. curl | node)
+function getInteractiveInput() {
+  if (process.stdin.isTTY) {
+    return process.stdin;
+  }
+  try {
+    const fd = fs.openSync('/dev/tty', 'r+');
+    return new tty.ReadStream(fd);
+  } catch (err) {
+    return process.stdin;
+  }
+}
+
+const inputSource = getInteractiveInput();
 
 // Color & ANSI Control Codes
 const ANSI = {
@@ -38,10 +54,11 @@ const ANSI = {
 function selectMenu(title, options, defaultIdx = 0) {
   return new Promise((resolve) => {
     let selectedIdx = defaultIdx;
-    const input = process.stdin;
 
-    readline.emitKeypressEvents(input);
-    if (input.isTTY) input.setRawMode(true);
+    readline.emitKeypressEvents(inputSource);
+    if (inputSource.isTTY && typeof inputSource.setRawMode === 'function') {
+      inputSource.setRawMode(true);
+    }
     process.stdout.write(ANSI.cursorHide);
 
     function render() {
@@ -58,6 +75,7 @@ function selectMenu(title, options, defaultIdx = 0) {
     render();
 
     function onKeypress(str, key) {
+      if (!key) return;
       if (key.name === 'up') {
         selectedIdx = (selectedIdx - 1 + options.length) % options.length;
         process.stdout.write(ANSI.cursorUp(options.length + 2) + ANSI.clearLine);
@@ -77,20 +95,22 @@ function selectMenu(title, options, defaultIdx = 0) {
     }
 
     function cleanup() {
-      input.removeListener('keypress', onKeypress);
-      if (input.isTTY) input.setRawMode(false);
+      inputSource.removeListener('keypress', onKeypress);
+      if (inputSource.isTTY && typeof inputSource.setRawMode === 'function') {
+        inputSource.setRawMode(false);
+      }
       process.stdout.write(ANSI.cursorShow);
     }
 
-    input.on('keypress', onKeypress);
+    inputSource.on('keypress', onKeypress);
   });
 }
 
 // Clean Text Input Component
-function inputPrompt(title, defaultValue = '', masked = false) {
+function inputPrompt(title, defaultValue = '') {
   return new Promise((resolve) => {
     const rl = readline.createInterface({
-      input: process.stdin,
+      input: inputSource,
       output: process.stdout
     });
 
@@ -128,7 +148,7 @@ async function fetchRemoteFile(remotePath, outputPath) {
       const dir = path.dirname(outputPath);
       if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
       fs.copyFileSync(sourceLocalPath, outputPath);
-      console.log(`  ${ANSI.green}[OK]${ANSI.reset} ${remotePath} (local package source)`);
+      console.log(`  ${ANSI.green}[OK]${ANSI.reset} ${remotePath} (local package fallback)`);
     } else {
       console.warn(`  ${ANSI.yellow}[WARN]${ANSI.reset} Could not fetch ${remotePath}`);
     }
@@ -167,7 +187,7 @@ async function main() {
 
     if (enableGitManager) {
       githubUsername = await inputPrompt('Enter GitHub Username');
-      githubToken = await inputPrompt('Enter GitHub Personal Access Token (stored in .env.local)', '', true);
+      githubToken = await inputPrompt('Enter GitHub Personal Access Token (stored in .env.local)');
 
       if (!githubToken) {
         console.error(`\n${ANSI.red}[ERROR] GitHub Token is required when GitHub Manager is enabled.${ANSI.reset}`);
