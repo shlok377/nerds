@@ -1,0 +1,16 @@
+{
+  "agent": {
+    "alias": "agent-1",
+    "assignedLabel": "agent:bot",
+    "teamMembers": []
+  },
+  "github": {
+    "coordinationBranch": "sync/llm-coordination",
+    "autoPR": true
+  },
+  "designSystem": {
+    "antiSlop": true,
+    "theme": "obsidian-hsl",
+    "wcagLevel": "AA"
+  }
+}

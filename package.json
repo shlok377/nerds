@@ -1,0 +1,40 @@
+{
+  "name": "@shlok377/nerds",
+  "version": "1.0.0",
+  "description": "Autonomous issue-driven web engineering stack blending think.live, gstack, and ui-ux-pro-max",
+  "type": "module",
+  "main": "bin/nerds-init.js",
+  "bin": {
+    "nerds": "bin/nerds-init.js",
+    "nerds-init": "bin/nerds-init.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shlok377/nerds.git"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "nerds:init": "node ./bin/nerds-init.js",
+    "nerds:poll": "node ./.nerds/scripts/github-poller.js",
+    "nerds:git": "node ./.nerds/scripts/git-pro-manager.js",
+    "security:scan": "node ./scripts/security-leak-scanner.js"
+  },
+  "keywords": [
+    "antigravity",
+    "autonomous-agent",
+    "gstack",
+    "think.live",
+    "ui-ux-pro-max",
+    "github-manager"
+  ],
+  "author": "Shlok & NERDS Team",
+  "license": "MIT",
+  "dependencies": {
+    "lucide": "^0.380.0"
+  },
+  "devDependencies": {
+    "vite": "^5.2.0"
+  }
+}

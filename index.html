@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NERDS: Autonomous AI Web Engineering Platform blending think.live, gstack, and UI-UX Pro Max.">
+  <title>NERDS Autonomous AI Web Platform</title>
+  <link rel="stylesheet" href="./src/design-system/theme.css">
+  <link rel="stylesheet" href="./src/app.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Header Navbar -->
+    <header class="navbar">
+      <div class="nav-brand">
+        <div class="logo-icon">⚡</div>
+        <div class="brand-title">
+          <span class="brand-name">NERDS</span>
+          <span class="brand-tag">Autonomous Web Director</span>
+        </div>
+      </div>
+      <div class="nav-status">
+        <div class="status-indicator">
+          <span class="status-dot pulse"></span>
+          <span id="daemon-status-text">Issue Poller: Active</span>
+        </div>
+        <span class="badge badge-emerald" id="auth-badge">GitHub PAT: Local Verified</span>
+      </div>
+    </header>
+
+    <!-- Main Workspace Dashboard Grid -->
+    <main class="dashboard-grid">
+      <!-- Section 1: Active Sprint Task & Issue Listener -->
+      <section class="card span-2">
+        <div class="card-header">
+          <h2>🎯 Active Issue Dispatch</h2>
+          <span class="badge badge-amber" id="task-status-badge">Task Locked</span>
+        </div>
+        <div class="task-details" id="current-task-card">
+          <div class="task-meta">
+            <span class="task-id" id="task-id">Issue #104</span>
+            <span class="task-assignee" id="task-assignee">Assigned to: @agent-shlok</span>
+          </div>
+          <h3 class="task-title" id="task-title">Build Decoupled Design System Tokens & GitHub Manager Daemon</h3>
+          <p class="task-desc" id="task-desc">
+            Autonomous dispatch received via GitHub Poller. Processing workflow using GStack role engine and DOM visual audit.
+          </p>
+          <div class="task-progress-bar">
+            <div class="progress-fill" id="task-progress" style="width: 75%;"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: GStack Role Pipeline Status -->
+      <section class="card">
+        <div class="card-header">
+          <h2>🧠 GStack Role Pipeline</h2>
+        </div>
+        <ul class="role-list">
+          <li class="role-item completed">
+            <span class="role-icon">👔</span>
+            <div class="role-info">
+              <span class="role-name">Product CEO</span>
+              <span class="role-status">Spec Validated</span>
+            </div>
+          </li>
+          <li class="role-item completed">
+            <span class="role-icon">📐</span>
+            <div class="role-info">
+              <span class="role-name">Architect EM</span>
+              <span class="role-status">Modular Plan Built</span>
+            </div>
+          </li>
+          <li class="role-item active">
+            <span class="role-icon">🎨</span>
+            <div class="role-info">
+              <span class="role-name">Lead Designer</span>
+              <span class="role-status">UI-UX Pro Max Audit</span>
+            </div>
+          </li>
+          <li class="role-item pending">
+            <span class="role-icon">🧪</span>
+            <div class="role-info">
+              <span class="role-name">QA Lead</span>
+              <span class="role-status">Browser Subagent Test</span>
+            </div>
+          </li>
+          <li class="role-item pending">
+            <span class="role-icon">🛡️</span>
+            <div class="role-info">
+              <span class="role-name">Security Officer</span>
+              <span class="role-status">Leak Scan Pending</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Section 3: GitHub Pro Manager Atomic Log -->
+      <section class="card">
+        <div class="card-header">
+          <h2>🐙 Git Pro Manager Log</h2>
+          <span class="branch-tag" id="active-branch">branch: feat/issue-104</span>
+        </div>
+        <div class="commit-log" id="commit-log">
+          <div class="commit-item">
+            <span class="commit-hash">a7f82b1</span>
+            <span class="commit-msg">feat(core): initialize modular project boundaries</span>
+          </div>
+          <div class="commit-item">
+            <span class="commit-hash">c4e109d</span>
+            <span class="commit-msg">security(git): enforce hard gitignore for .env.local</span>
+          </div>
+          <div class="commit-item">
+            <span class="commit-hash">f9d331a</span>
+            <span class="commit-msg">ui(design-system): add HSL obsidian color tokens</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Cross-LLM Partner Coordination Branch -->
+      <section class="card span-2">
+        <div class="card-header">
+          <h2>🤝 Partner LLM Coordination Channel</h2>
+          <span class="badge badge-emerald">Branch: sync/llm-coordination</span>
+        </div>
+        <div class="coordination-panel">
+          <div class="sync-status-box">
+            <div class="sync-item">
+              <span class="sync-label">Active Agent ID:</span>
+              <span class="sync-value">shlok-antigravity-01</span>
+            </div>
+            <div class="sync-item">
+              <span class="sync-label">Claimed Modules:</span>
+              <span class="sync-value">src/design-system, bin/nerds-init.js</span>
+            </div>
+            <div class="sync-item">
+              <span class="sync-label">Partner Lock State:</span>
+              <span class="sync-value text-emerald">Synced (0 Conflicts)</span>
+            </div>
+          </div>
+          <div class="action-bar">
+            <button class="btn btn-primary" id="btn-trigger-poll">⚡ Fetch Next Issue</button>
+            <button class="btn btn-outline" id="btn-run-scan">🛡️ Run Security Scan</button>
+            <button class="btn btn-outline" id="btn-simulate-commit">🐙 Trigger Atomic Commit</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>
