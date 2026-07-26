@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 /**
- * NERDS Autonomous Web Director - Setup & Bootstrapper Wizard
- * Executable via `npx github:shlok377/nerds init` on ANY PC in the world.
+ * NERDS Autonomous Web Engineering Director - Setup Wizard
+ * Clean TUI style (No emojis, clutter-free layout, /dev/tty TTY stream fix)
  */
 
 import fs from 'fs';
@@ -19,8 +19,18 @@ const envLocalPath = path.join(targetProjectRoot, '.env.local');
 const nerdsConfigPath = path.join(targetProjectRoot, '.nerds.json');
 const gitignorePath = path.join(targetProjectRoot, '.gitignore');
 
+// Fix TTY input stream for curl | node pipe execution
+let inputStream = process.stdin;
+if (!process.stdin.isTTY && fs.existsSync('/dev/tty')) {
+  try {
+    inputStream = fs.createReadStream('/dev/tty');
+  } catch (err) {
+    inputStream = process.stdin;
+  }
+}
+
 const rl = readline.createInterface({
-  input: process.stdin,
+  input: inputStream,
   output: process.stdout
 });
 
@@ -42,35 +52,36 @@ async function fetchRemoteFile(remotePath, outputPath) {
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
     execSync(`curl -fsSL "${rawUrl}" -o "${outputPath}"`, { stdio: 'pipe' });
-    console.log(`  ✓ Downloaded ${remotePath}`);
+    console.log(`  [OK] ${remotePath}`);
   } catch (err) {
     const sourceLocalPath = path.join(__dirname, '..', remotePath);
     if (fs.existsSync(sourceLocalPath)) {
       const dir = path.dirname(outputPath);
       if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
       fs.copyFileSync(sourceLocalPath, outputPath);
-      console.log(`  ✓ Installed ${remotePath} (package fallback)`);
+      console.log(`  [OK] ${remotePath} (fallback)`);
     } else {
-      console.warn(`  ⚠️ Could not fetch ${remotePath}`);
+      console.warn(`  [WARN] Failed to fetch ${remotePath}`);
     }
   }
 }
 
 async function main() {
-  console.log('\n=============================================================');
-  console.log('⚡ NERDS Autonomous Web Director - Universal Onboarding');
-  console.log(' Remote Execution: npx github:shlok377/nerds init');
-  console.log(' Core Values (Always Installed):');
-  console.log('  🎨 NERDS Custom Design Engine (Strict Anti-Slop Enforcement)');
-  console.log('  🧠 NERDS Sprint Role Engine (CEO, EM, Designer, QA, Security)');
-  console.log('=============================================================\n');
+  console.log('\n+-------------------------------------------------------------+');
+  console.log('|              NERDS AUTONOMOUS WEB DIRECTOR                  |');
+  console.log('|                      SETUP WIZARD                           |');
+  console.log('+-------------------------------------------------------------+');
+  console.log('| Core Engines (Default):                                     |');
+  console.log('|  - NERDS Custom Design Intelligence Engine (Anti-Slop)     |');
+  console.log('|  - NERDS Native 5-Role Pipeline (CEO, EM, Designer, QA, Sec)|');
+  console.log('+-------------------------------------------------------------+\n');
 
   try {
     const detectedRemote = getGitRemoteOrigin();
-    console.log(`📡 Target Workspace Remote: ${detectedRemote}\n`);
+    console.log(`[Repository Remote]: ${detectedRemote}\n`);
 
     // --- QUESTION 1: GitHub Pro Manager Toggle ---
-    const enableGitManagerAns = await askQuestion('❓ Install GitHub Pro Manager module (`module/github-manager`)? (y/N): ');
+    const enableGitManagerAns = await askQuestion('[?] Enable GitHub Pro Manager module (y/N): ');
     const enableGitManager = enableGitManagerAns.trim().toLowerCase() === 'y';
 
     let githubUsername = '';
@@ -79,39 +90,39 @@ async function main() {
     let assignedLabel = 'agent:bot';
 
     if (enableGitManager) {
-      githubUsername = await askQuestion('👤 Enter your GitHub Username: ');
-      githubToken = await askQuestion('🔑 Enter GitHub Personal Access Token [saved securely in .env.local]: ');
+      githubUsername = await askQuestion('[?] GitHub Username: ');
+      githubToken = await askQuestion('[?] GitHub Personal Access Token (stored in .env.local): ');
 
       if (!githubToken || githubToken.trim() === '') {
-        console.error('❌ Error: GitHub Token is required when GitHub Manager is enabled.');
+        console.error('[ERROR] GitHub Token is required when GitHub Manager is enabled.');
         process.exit(1);
       }
 
-      agentAlias = (await askQuestion('🤖 Enter Agent Alias (default: agent-1): ')) || 'agent-1';
+      agentAlias = (await askQuestion('[?] Agent Alias (default: agent-1): ')) || 'agent-1';
       const defaultLabel = `agent:${agentAlias.trim()}`;
-      assignedLabel = (await askQuestion(`🏷️ Enter GitHub Issue Label to poll (default: ${defaultLabel}): `)) || defaultLabel;
+      assignedLabel = (await askQuestion(`[?] GitHub Issue Label to poll (default: ${defaultLabel}): `)) || defaultLabel;
 
       const envContent = `# NERDS Local Secrets (STRICTLY GITIGNORED - DO NOT COMMIT)\nGITHUB_TOKEN=${githubToken.trim()}\nGITHUB_USERNAME=${githubUsername.trim()}\nAGENT_ALIAS=${agentAlias.trim()}\n`;
       fs.writeFileSync(envLocalPath, envContent, { mode: 0o600 });
-      console.log('🔒 Credentials saved to local `.env.local` (0600 permissions)');
+      console.log('[SUCCESS] Saved credentials to .env.local (0600 permissions)');
     } else {
-      console.log('ℹ️ GitHub Pro Manager disabled. Operating in local mode.');
+      console.log('[INFO] GitHub Pro Manager disabled. Operating in local mode.');
     }
 
     // --- QUESTION 2: Team Members Count (0-4 max) ---
-    let teamCountInput = await askQuestion('\n👥 How many team members on this project? (0-4 max, default: 0): ');
+    let teamCountInput = await askQuestion('\n[?] Team members count on project (0-4 max, default: 0): ');
     let teamCount = parseInt(teamCountInput.trim() || '0', 10);
     if (isNaN(teamCount) || teamCount < 0) teamCount = 0;
     if (teamCount > 4) teamCount = 4;
 
     const teamMembers = [];
     for (let i = 1; i <= teamCount; i++) {
-      const member = await askQuestion(`  -> Enter username / alias for team member ${i}: `);
+      const member = await askQuestion(`  -> Username / alias for team member ${i}: `);
       if (member && member.trim()) teamMembers.push(member.trim());
     }
 
     // --- DOWNLOADING MODULE FILES ---
-    console.log('\n📦 Downloading NERDS Core Values & Selected Modules into target project...');
+    console.log('\n[FETCHING] Installing NERDS Core Values & Selected Modules...');
 
     await fetchRemoteFile('.gemini/skills/nerds-director/SKILL.md', path.join(targetProjectRoot, '.gemini/skills/nerds-director/SKILL.md'));
     await fetchRemoteFile('src/design-system/theme.css', path.join(targetProjectRoot, 'src/design-system/theme.css'));
@@ -152,23 +163,23 @@ async function main() {
     };
 
     fs.writeFileSync(nerdsConfigPath, JSON.stringify(nerdsConfig, null, 2));
-    console.log('⚙️ Saved workspace configuration to `.nerds.json`');
+    console.log('[CONFIG] Created .nerds.json manifest');
 
     let gitignoreContent = fs.existsSync(gitignorePath) ? fs.readFileSync(gitignorePath, 'utf8') : '';
     if (!gitignoreContent.includes('.env.local')) {
       gitignoreContent += '\n# NERDS Credentials Security\n.env.local\n.nerds/credentials.json\n';
       fs.writeFileSync(gitignorePath, gitignoreContent);
-      console.log('🛡️ Verified `.gitignore` security rules.');
+      console.log('[SECURITY] Hardened .gitignore rules.');
     }
 
-    console.log('\n=============================================================');
-    console.log('✅ NERDS Setup Complete!');
-    console.log(` Delivered Modules: [${installedModules.join(', ')}]`);
-    console.log(' Antigravity IDE will now recognize the `nerds-director` skill.');
-    console.log(' Updates & visual proofs will be reported in your LLM Chatbox!');
-    console.log('=============================================================\n');
+    console.log('\n+-------------------------------------------------------------+');
+    console.log('|                  NERDS SETUP COMPLETE                       |');
+    console.log('+-------------------------------------------------------------+');
+    console.log(`| Installed Modules: [${installedModules.join(', ')}]`);
+    console.log('| Antigravity IDE will recognize `nerds-director` skill.');
+    console.log('+-------------------------------------------------------------+\n');
   } catch (err) {
-    console.error('❌ Setup failed:', err);
+    console.error('[ERROR] Setup failed:', err);
   } finally {
     rl.close();
   }
