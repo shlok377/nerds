@@ -4,17 +4,15 @@
 
 ---
 
-## Quick Start: Universal Installation Methods
+## Quick Start: Universal Interactive Installer
 
-Run either of these single-line commands in your terminal inside any blank or existing web repository:
-
-### Method 1: Direct Interactive Installer (Recommended)
+Run this single-line command in your terminal inside any blank or existing web repository:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/shlok377/nerds/main/install.sh | bash
 ```
 
-### Method 2: NPX Remote Command
+Alternatively, you can run via NPX:
 
 ```bash
 npx github:shlok377/nerds init
@@ -24,7 +22,7 @@ npx github:shlok377/nerds init
 
 ## Setup Workflow
 
-Running the installer launches a clean, interactive TUI wizard that configures your project on-demand:
+Running the installer launches a clean, interactive TUI setup wizard that configures your project on-demand:
 
 ```
 +-------------------------------------------------------------+
@@ -35,6 +33,14 @@ Running the installer launches a clean, interactive TUI wizard that configures y
 |  - NERDS Custom Design Intelligence Engine (Anti-Slop)     |
 |  - NERDS Native 5-Role Pipeline (CEO, EM, Designer, QA, Sec)|
 +-------------------------------------------------------------+
+
+STEP 1: Select Team Members & Partner LLMs Capacity:
+  (•) 0 Members (Solo Developer)
+  ( ) 1 Member  (Dual Partnership) -> Auto-enables GitHub Manager
+  ( ) 2 Members (Trio Team)        -> Auto-enables GitHub Manager
+  ( ) 3 Members (Quad Team)        -> Auto-enables GitHub Manager
+
+STEP 2: Configure GitHub Pro Manager (Auto-enabled for Teams; Optional for Solo)
 ```
 
 ---
@@ -44,8 +50,8 @@ Running the installer launches a clean, interactive TUI wizard that configures y
 Unlike optional plugins, these core values are non-negotiable defaults included in every project:
 
 ### 1. NERDS Custom Design Intelligence Engine (Anti-Slop Standard)
-* Strict Anti-Slop Bans: Rejects overused AI slop clichés (low-contrast generic glassmorphism cards, floating blue/purple gradient blurs, boilerplate hero templates).
-* Enforced Standards: Custom Obsidian HSL color system (`hsl(222, 24%, 9%)`), fluid responsive typography (`clamp()`), zero Cumulative Layout Shift (CLS) states, and WCAG AA contrast compliance.
+* Strict Anti-Slop Bans: Rejects overused AI slop clichés (low-contrast generic glassmorphism cards, floating blue/purple gradient blurs, boilerplate hero templates, emojis, and blinking LED dots).
+* Enforced Standards: Custom Obsidian HSL color system (`hsl(220, 18%, 7%)`), fluid responsive typography (`clamp()`), zero Cumulative Layout Shift (CLS) states, and WCAG AA contrast compliance.
 
 ### 2. NERDS 5-Role Sprint Pipeline (The NERDS Team)
 Every task executed by NERDS automatically moves through the 5-role quality gate:
