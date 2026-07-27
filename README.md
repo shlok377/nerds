@@ -1,95 +1,77 @@
-# NERDS Autonomous Web Engineering Director
+# NERDS Autonomous Engineering Director
 
-> NERDS is a portable, zero-hardcode AI web engineering platform and Antigravity IDE skill that blends multi-agent agency, a native 5-role sprint pipeline, and elite anti-slop design intelligence.
+> NERDS is an autonomous multi-agent web engineering stack for Antigravity IDE, driven by 7 specialized Nerds roles, auto-role switching, assignee-filtered GitHub teamwork, and strict anti-slop design intelligence.
 
 ---
 
-## Quick Start: Universal Interactive Installer
+## ⚡ Quick Start: Zero-TUI CLI Setup
 
-Run this single-line command in your terminal inside any blank or existing web repository:
+Run the single-line CLI command inside any web repository:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/shlok377/nerds/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/shlok377/nerds/main/install.sh | bash -s -- -leader -mem 2 -alias bot-1
 ```
 
-Alternatively, you can run via NPX:
+Or locally:
 
 ```bash
-npx github:shlok377/nerds init
+node bin/nerds-init.js -leader -mem 2 -alias leader-agent -gh-user myuser -gh-token mytoken
 ```
 
 ---
 
-## Setup Workflow
+## 🛠️ CLI Flags & Options
 
-Running the installer launches a clean, interactive TUI setup wizard that configures your project on-demand:
+| Flag | Short | Description | Default |
+| :--- | :--- | :--- | :--- |
+| `--leader` | `-leader` | Configure role as Team Leader | `true` |
+| `--member` | `-member` | Configure role as Co-worker (Team Member) | `false` |
+| `--members <n>` | `-mem <n>` | Number of team members (excluding Leader) | `0` |
+| `--no-git` | `-nogit` | Disable GitHub integration | `false` |
+| `--alias <name>`| `-alias <name>` | Set agent handle/alias for issue matching | `agent-1` |
+| `--gh-user <user>`| `-gh-user <user>`| GitHub Username | `""` |
+| `--gh-token <tok>`| `-gh-token <tok>`| GitHub Personal Access Token (saved to `.env.local`) | `""` |
+| `--help` | `-h` | Display CLI options help | |
+
+---
+
+## 🤖 The 7 Nerds Roles & Auto-Switching Router
+
+NERDS passes every task through a 7-stage quality pipeline:
 
 ```
-+-------------------------------------------------------------+
-|              NERDS AUTONOMOUS WEB DIRECTOR                  |
-|               INTERACTIVE TUI SETUP WIZARD                  |
-+-------------------------------------------------------------+
-| Core Values Included:                                       |
-|  - NERDS Custom Design Intelligence Engine (Anti-Slop)     |
-|  - NERDS Native 5-Role Pipeline (CEO, EM, Designer, QA, Sec)|
-+-------------------------------------------------------------+
-
-STEP 1: Select Team Members & Partner LLMs Capacity:
-  (•) 0 Members (Solo Developer)
-  ( ) 1 Member  (Dual Partnership) -> Auto-enables GitHub Manager
-  ( ) 2 Members (Trio Team)        -> Auto-enables GitHub Manager
-  ( ) 3 Members (Quad Team)        -> Auto-enables GitHub Manager
-
-STEP 2: Configure GitHub Pro Manager (Auto-enabled for Teams; Optional for Solo)
+[Task Input / Assigned GitHub Issue]
+         │
+ 1. Product CEO Nerd ──────► (6 Forcing Questions, 4 Modes, 10-Star Product Spec)
+         │
+ 2. Architect EM Nerd ─────► (Modular File Isolation, Data Flow Diagrams, Edge Cases)
+         │
+ 3. Designing Incharge ────► (0-10 Quality Gate, Anti-Slop Bans, DX Review, Design System)
+         │
+ 4. Design Explorer ───────► ("Show Me Options" Board, Pretext ~30KB Production HTML)
+         │
+ 5. QA Lead Nerd ──────────► (Real Chromium Browser Visual Verification & Auto Regression Tests)
+         │
+ 6. Security Auditor ──────► (Production Vulnerability Fixes, Iron Law Debugging, CWV & Doc Sync)
+         │
+ 7. Git Nerd ──────────────► (Assignee Validation, Micro-Commits, Feature PR & Issue Resolution)
 ```
 
 ---
 
-## Core Values (Always Included)
+## 👥 GitHub Teamwork & Task Assignment
 
-Unlike optional plugins, these core values are non-negotiable defaults included in every project:
-
-### 1. NERDS Custom Design Intelligence Engine (Anti-Slop Standard)
-* Strict Anti-Slop Bans: Rejects overused AI slop clichés (low-contrast generic glassmorphism cards, floating blue/purple gradient blurs, boilerplate hero templates, emojis, and blinking LED dots).
-* Enforced Standards: Custom Obsidian HSL color system (`hsl(220, 18%, 7%)`), fluid responsive typography (`clamp()`), zero Cumulative Layout Shift (CLS) states, and WCAG AA contrast compliance.
-
-### 2. NERDS 5-Role Sprint Pipeline (The NERDS Team)
-Every task executed by NERDS automatically moves through the 5-role quality gate:
-
-1. **Product CEO**: Validates requirement scope & issue specifications.
-2. **Architect EM**: Plans modular file boundaries (`src/core/`, `src/features/`) to prevent code collisions.
-3. **Lead Designer**: Enforces the NERDS Design Intelligence tokens and CSS variables.
-4. **QA Lead**: Executes build/lint checks and launches Antigravity's `browser_subagent` for DOM visual verification.
-5. **Security Auditor**: Scans for leaked tokens or credentials using `scripts/security-leak-scanner.js`.
+- **Assignee Task Claiming**: The LLM checks `issue.assignees` on GitHub. If its configured `AGENT_ALIAS` / `GITHUB_USERNAME` is assigned, it claims the issue. Unassigned or non-matching issues are ignored by co-workers.
+- **Leader Directives**: Team Leader creates issues, assigns tasks to team members, manages the `sync/llm-coordination` lock branch, and merges incoming PRs.
+- **Co-worker Directives**: Co-workers poll for assigned tasks, execute work in isolated feature branches, and submit PRs with QA visual proof.
 
 ---
 
-## Modular Branch Structure
+## 🔒 Credential Security Guarantee
 
-The main repository is organized into isolated branches so projects only download what they select:
-
-| Branch | Description | Downloaded When |
-| :--- | :--- | :--- |
-| **`main`** | **Core Values Base**:<br>• `bin/nerds-init.js`<br>• `src/design-system/theme.css`<br>• `.gemini/skills/nerds-director/SKILL.md`<br>• `scripts/security-leak-scanner.js` | Always (Default) |
-| **`module/github-manager`** | **GitHub Automation Module**:<br>• `.nerds/scripts/git-pro-manager.js`<br>• `.nerds/scripts/github-poller.js` | GitHub Manager = **ENABLED** |
-| **`module/partner-sync`** | **Cross-LLM Partner Lock Protocol**:<br>• `.nerds/scripts/coordination-sync.js` | Team Members **> 0** |
-
----
-
-## Credential Security Guarantee
-
-* **Zero Leakage**: Personal Access Tokens and credentials live strictly in `.env.local` with `0600` permissions.
-* **Hardened `.gitignore`**: `.env.local` is automatically gitignored.
-* **Pre-Commit Audit**: `scripts/security-leak-scanner.js` scans code before every commit to ensure credentials are NEVER published.
-
----
-
-## Chatbox-Native LLM Interface
-
-Once initialized in your project:
-1. Open your workspace in **Antigravity IDE**.
-2. Antigravity IDE automatically detects `.gemini/skills/nerds-director/SKILL.md`.
-3. All role progress (**CEO -> EM -> Designer -> QA -> Security**), atomic commit logs, and DOM visual proof screenshots captured by `browser_subagent` are reported directly inside your LLM Chatbox.
+- Credentials are saved exclusively in `.env.local` with strict `0600` permissions.
+- `.env.local` is automatically added to `.gitignore`.
+- Pre-commit scanner (`scripts/security-leak-scanner.js`) prevents hardcoded secret leaks before every commit.
 
 ---
 

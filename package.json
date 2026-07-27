@@ -21,6 +21,7 @@
     "nerds:init": "node ./bin/nerds-init.js",
     "nerds:poll": "node ./.nerds/scripts/github-poller.js",
     "nerds:git": "node ./.nerds/scripts/git-pro-manager.js",
+    "nerds:test-harness": "node ./testing/test-harness.js",
     "security:scan": "node ./scripts/security-leak-scanner.js"
   },
   "keywords": [

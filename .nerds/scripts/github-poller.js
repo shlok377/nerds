@@ -19,18 +19,18 @@ function loadConfig() {
   if (fs.existsSync(nerdsConfigPath)) {
     return JSON.parse(fs.readFileSync(nerdsConfigPath, 'utf8'));
   }
-  return { agent: { alias: 'agent-1', assignedLabel: 'agent:bot' } };
+  return { gitManager: { alias: process.env.AGENT_ALIAS || 'agent-1' } };
 }
 
 export function pollGitHubIssues() {
   const config = loadConfig();
-  const agentLabel = config.agent?.assignedLabel || 'agent:bot';
-  const agentAlias = config.agent?.alias || 'agent-1';
+  const agentAlias = process.env.AGENT_ALIAS || config.gitManager?.agentAlias || 'agent-1';
+  const githubUser = process.env.GITHUB_USERNAME || config.gitManager?.githubUsername || agentAlias;
 
-  console.log(`\n🔍 NERDS Listener: Checking GitHub issues for label "${agentLabel}" (Agent: ${agentAlias})...`);
+  console.log(`\n🔍 NERDS Listener: Polling GitHub issues assigned to "${agentAlias}" / "${githubUser}"...`);
 
   try {
-    const output = execSync(`gh issue list --label "${agentLabel}" --state open --json number,title,body,assignees,labels`, {
+    const output = execSync(`gh issue list --state open --json number,title,body,assignees,labels`, {
       cwd: projectRoot,
       encoding: 'utf8',
       stdio: ['pipe', 'pipe', 'pipe']
@@ -38,17 +38,30 @@ export function pollGitHubIssues() {
 
     const issues = JSON.parse(output || '[]');
     if (issues.length === 0) {
-      console.log(`✨ No unhandled issues found assigned to label "${agentLabel}". Standing by...`);
+      console.log(`✨ No open issues found. Standing by...`);
       return null;
     }
 
-    const nextIssue = issues[0];
+    // Filter issues where assignees include agentAlias or githubUser
+    const assignedIssues = issues.filter((issue) => {
+      if (!issue.assignees || issue.assignees.length === 0) return false;
+      return issue.assignees.some(
+        (a) => a.login.toLowerCase() === agentAlias.toLowerCase() || a.login.toLowerCase() === githubUser.toLowerCase()
+      );
+    });
+
+    if (assignedIssues.length === 0) {
+      console.log(`✨ No open issues explicitly assigned to "${agentAlias}". Standing by...`);
+      return null;
+    }
+
+    const nextIssue = assignedIssues[0];
     console.log(`\n🎯 TASK DISPATCHED: Issue #${nextIssue.number} - "${nextIssue.title}"`);
     console.log(` Description: ${nextIssue.body || 'No description provided.'}`);
 
     return nextIssue;
   } catch (err) {
-    console.log(`ℹ️ GitHub API returned no open issues for label "${agentLabel}" or gh CLI is unauthenticated.`);
+    console.log(`ℹ️ GitHub API request failed or gh CLI unauthenticated.`);
     return null;
   }
 }
