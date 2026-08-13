@@ -30,6 +30,8 @@ const ANSI = {
 };
 
 const REQUIRED_FILES = [
+  'SKILL.md',
+  '.nerds/SKILL.md',
   '.nerds/instructions/01-product-ceo.md',
   '.nerds/instructions/02-architect-em.md',
   '.nerds/instructions/03-designing-incharge.md',
@@ -265,9 +267,11 @@ AGENT_ALIAS=${options.agentAlias}
   console.log(`\n+-------------------------------------------------------------+`);
   console.log(`|                NERDS SETUP COMPLETE                         |`);
   console.log(`+-------------------------------------------------------------+`);
-  console.log(`| 7 Nerds roles and auto-switching router initialized!        |`);
+  console.log(`| ✨ 7 Nerds roles and universal AGY SKILL.md initialized!     |`);
+  console.log(`| 🚀 Open AGY (CLI or IDE) & start prompting straight away!   |`);
   console.log(`+-------------------------------------------------------------+\n`);
 }
 
 main();
+
 

@@ -4,19 +4,19 @@
 
 ---
 
-## ⚡ Quick Start: Zero-TUI CLI Setup
+## ⚡ Quick Start: Zero-Friction Setup & AGY Direct Prompting
 
-Run the single-line CLI command inside any web repository:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/shlok377/nerds/main/install.sh | bash -s -- -leader -mem 2 -alias bot-1
-```
-
-Or locally:
+1. Run the single-line CLI installer in your repository:
 
 ```bash
-node bin/nerds-init.js -leader -mem 2 -alias leader-agent -gh-user myuser -gh-token mytoken
+curl -fsSL https://raw.githubusercontent.com/shlok377/nerds/main/install.sh | bash -s -- -gh-user myuser -gh-token ghp_mytoken
 ```
+
+2. Close/quit the installer.
+
+3. **Open AGY (CLI or IDE) and start prompting straight away!**
+   - The provisioned `./SKILL.md` automatically activates NERDS on **EVERY prompt** (plain prompts, feature builds, bug fixes, refactorings).
+   - NERDS routes every task through the 7 Quality Gates, performs visual browser QA, scans for secret leaks, and executes atomic Git commits automatically.
 
 ---
 
@@ -32,6 +32,7 @@ node bin/nerds-init.js -leader -mem 2 -alias leader-agent -gh-user myuser -gh-to
 | `--gh-user <user>`| `-gh-user <user>`| GitHub Username | `""` |
 | `--gh-token <tok>`| `-gh-token <tok>`| GitHub Personal Access Token (saved to `.env.local`) | `""` |
 | `--help` | `-h` | Display CLI options help | |
+
 
 ---
 
