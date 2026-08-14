@@ -28,5 +28,6 @@ Manage GitHub operations, issue polling, task assignment filtering, branch creat
 
 ---
 
-## Output Contract
-- Push branch, create PR, update GitHub issue status, and notify team.
+## Output Contract & Final Pipeline Handoff
+- Execute `node ./.nerds/scripts/git-pro-manager.js` to commit changes and manage PRs.
+- Summarize full 7-stage NERDS quality pipeline completion to the user.

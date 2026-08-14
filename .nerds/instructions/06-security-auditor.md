@@ -31,5 +31,6 @@ Detect production security vulnerabilities, enforce Iron Law root-cause debuggin
 
 ---
 
-## Output Contract
-- Hand off security-audited, performance-verified codebase to **Git Nerd**.
+## Output Contract & Stage Approval Handoff
+- Record security audit results and performance metrics in `walkthrough.md`.
+- Summarize Stage 6 security findings to the user and request explicit approval to proceed to Stage 7 (Git Nerd).

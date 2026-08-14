@@ -50,17 +50,17 @@ function scanDirectory(dir, issues = []) {
   return issues;
 }
 
-console.log('🛡️ NERDS Security Scanner: Inspecting workspace files...');
+console.log('[SECURITY] NERDS Security Scanner: Inspecting workspace files...');
 const detectedIssues = scanDirectory(projectRoot);
 
 if (detectedIssues.length > 0) {
-  console.error('\n❌ CRITICAL SECURITY ALERT: Exposed credentials detected!');
+  console.error('\n[SECURITY ALERT] Exposed credentials detected!');
   detectedIssues.forEach((issue) => {
     console.error(`  - File: ${issue.file} (Matches: ${issue.pattern})`);
   });
   console.error('Commit aborted. Remove secret strings from code before proceeding.\n');
   process.exit(1);
 } else {
-  console.log('✅ Security Audit Clean: 0 leaked secrets or tokens found in workspace.\n');
+  console.log('[SECURITY CLEAN] 0 leaked secrets or tokens found in workspace.\n');
   process.exit(0);
 }

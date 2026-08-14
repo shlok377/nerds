@@ -27,7 +27,7 @@ export function pollGitHubIssues() {
   const agentAlias = process.env.AGENT_ALIAS || config.gitManager?.agentAlias || 'agent-1';
   const githubUser = process.env.GITHUB_USERNAME || config.gitManager?.githubUsername || agentAlias;
 
-  console.log(`\n🔍 NERDS Listener: Polling GitHub issues assigned to "${agentAlias}" / "${githubUser}"...`);
+  console.log(`\n[POLLER] NERDS Listener: Polling GitHub issues assigned to "${agentAlias}" / "${githubUser}"...`);
 
   try {
     const output = execSync(`gh issue list --state open --json number,title,body,assignees,labels`, {
@@ -38,7 +38,7 @@ export function pollGitHubIssues() {
 
     const issues = JSON.parse(output || '[]');
     if (issues.length === 0) {
-      console.log(`✨ No open issues found. Standing by...`);
+      console.log(`[POLLER] No open issues found. Standing by...`);
       return null;
     }
 
@@ -51,17 +51,17 @@ export function pollGitHubIssues() {
     });
 
     if (assignedIssues.length === 0) {
-      console.log(`✨ No open issues explicitly assigned to "${agentAlias}". Standing by...`);
+      console.log(`[POLLER] No open issues explicitly assigned to "${agentAlias}". Standing by...`);
       return null;
     }
 
     const nextIssue = assignedIssues[0];
-    console.log(`\n🎯 TASK DISPATCHED: Issue #${nextIssue.number} - "${nextIssue.title}"`);
+    console.log(`\n[TASK DISPATCHED] Issue #${nextIssue.number} - "${nextIssue.title}"`);
     console.log(` Description: ${nextIssue.body || 'No description provided.'}`);
 
     return nextIssue;
   } catch (err) {
-    console.log(`ℹ️ GitHub API request failed or gh CLI unauthenticated.`);
+    console.log(`[POLLER INFO] GitHub API request failed or gh CLI unauthenticated.`);
     return null;
   }
 }

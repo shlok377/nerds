@@ -35,5 +35,6 @@ Establish design perfection (0-10 scoring), enforce strict Anti-Slop rules, exec
 
 ---
 
-## Output Contract
-- Pass design system tokens and DX spec to **Design Explorer & Engineer Nerd**.
+## Output Contract & Stage Approval Handoff
+- Pass design system tokens (`theme.css`) and DX spec.
+- Summarize Stage 3 findings to the user and request explicit approval to proceed to Stage 4 (Design Explorer & Engineer Nerd).

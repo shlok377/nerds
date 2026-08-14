@@ -6,7 +6,7 @@ const projectRoot = process.cwd();
 const syncCachePath = path.join(projectRoot, '.nerds', 'sync-cache', 'status.json');
 
 export function updateAgentSyncStatus(taskStatus) {
-  console.log('🤝 Cross-LLM Coordination: Syncing status on `sync/llm-coordination` channel...');
+  console.log('[SYNC] Cross-LLM Coordination: Syncing status on `sync/llm-coordination` channel...');
 
   const syncCacheDir = path.dirname(syncCachePath);
   if (!fs.existsSync(syncCacheDir)) {
@@ -23,7 +23,7 @@ export function updateAgentSyncStatus(taskStatus) {
   };
 
   fs.writeFileSync(syncCachePath, JSON.stringify(payload, null, 2));
-  console.log('✅ Local coordination cache updated:');
+  console.log('[SYNC] Local coordination cache updated:');
   console.log(JSON.stringify(payload, null, 2));
 
   try {

@@ -14,6 +14,6 @@ Lock in system architecture, file isolation boundaries, data flow diagrams, edge
 
 ---
 
-## Output Contract
+## Output Contract & Stage Approval Handoff
 - Save technical architecture and Mermaid diagrams to `implementation_plan.md`.
-- Hand off modular architecture and test specs directly to **Designing Incharge Nerd**.
+- Summarize Stage 2 findings to the user and request explicit approval to proceed to Stage 3 (Designing Incharge Nerd).

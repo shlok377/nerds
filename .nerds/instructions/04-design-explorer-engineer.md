@@ -24,6 +24,6 @@ Generate AI mockup options, manage comparison boards, and convert approved desig
 
 ---
 
-## Output Contract
+## Output Contract & Stage Approval Handoff
 - Save production HTML/CSS/JS components to project workspace.
-- Hand off working application to **QA Lead Nerd** for automated browser testing.
+- Summarize Stage 4 code deliverables to the user and request explicit approval to proceed to Stage 5 (QA Lead Nerd).

@@ -30,6 +30,9 @@ const ANSI = {
 };
 
 const REQUIRED_FILES = [
+  '.gemini/instructions.md',
+  'AGENTS.md',
+  '.gemini/skills/nerds-director/SKILL.md',
   'SKILL.md',
   '.nerds/SKILL.md',
   '.nerds/instructions/01-product-ceo.md',
@@ -267,11 +270,12 @@ AGENT_ALIAS=${options.agentAlias}
   console.log(`\n+-------------------------------------------------------------+`);
   console.log(`|                NERDS SETUP COMPLETE                         |`);
   console.log(`+-------------------------------------------------------------+`);
-  console.log(`| ✨ 7 Nerds roles and universal AGY SKILL.md initialized!     |`);
-  console.log(`| 🚀 Open AGY (CLI or IDE) & start prompting straight away!   |`);
+  console.log(`| 7 Nerds roles and system prompt instructions initialized!   |`);
+  console.log(`| Open AGY (CLI or IDE) & start prompting straight away!      |`);
   console.log(`+-------------------------------------------------------------+\n`);
 }
 
 main();
+
 
 

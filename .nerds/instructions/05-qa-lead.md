@@ -14,6 +14,6 @@ Execute real browser visual testing, identify runtime bugs, make atomic fixes, a
 
 ---
 
-## Output Contract
+## Output Contract & Stage Approval Handoff
 - Log test results, visual screenshots, and regression tests to `walkthrough.md`.
-- Hand off verified application to **Security Auditor Nerd**.
+- Summarize Stage 5 QA visual verification findings to the user and request explicit approval to proceed to Stage 6 (Security Auditor Nerd).

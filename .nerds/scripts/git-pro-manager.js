@@ -16,12 +16,12 @@ function runCmd(cmd, silent = false) {
 
 // 1. Run Pre-Commit Security Leak Scanner
 export function scanForSecrets() {
-  console.log('🛡️ Running Pre-Commit Security Audit...');
+  console.log('[SECURITY] Running Pre-Commit Security Audit...');
   try {
     execSync('node ./scripts/security-leak-scanner.js', { cwd: projectRoot, stdio: 'inherit' });
     return true;
   } catch (err) {
-    console.error('❌ Commit blocked due to security scan failure.');
+    console.error('[SECURITY ERROR] Commit blocked due to security scan failure.');
     return false;
   }
 }
@@ -31,15 +31,15 @@ export function atomicCommit(type, scope, message) {
   if (!scanForSecrets()) return false;
 
   const commitMsg = `${type}(${scope}): ${message}`;
-  console.log(`🐙 Git Pro Manager: Performing atomic micro-commit -> "${commitMsg}"`);
+  console.log(`[GIT] Git Pro Manager: Performing atomic micro-commit -> "${commitMsg}"`);
 
   runCmd('git add .');
   try {
     runCmd(`git commit -m "${commitMsg}"`);
-    console.log('✅ Commit successful.');
+    console.log('[GIT SUCCESS] Commit successful.');
     return true;
   } catch (err) {
-    console.log('ℹ️ No changes to commit.');
+    console.log('[GIT INFO] No changes to commit.');
     return false;
   }
 }
@@ -47,7 +47,7 @@ export function atomicCommit(type, scope, message) {
 // 3. Create Feature Branch for Issue
 export function createFeatureBranch(issueId, slug) {
   const branchName = `feat/issue-${issueId}-${slug}`;
-  console.log(`🌿 Git Pro Manager: Creating feature branch "${branchName}"`);
+  console.log(`[GIT] Git Pro Manager: Creating feature branch "${branchName}"`);
 
   try {
     runCmd(`git checkout -b ${branchName}`);
@@ -59,11 +59,11 @@ export function createFeatureBranch(issueId, slug) {
 
 // 4. Create GitHub Pull Request
 export function createPullRequest(title, body) {
-  console.log(`🚀 Git Pro Manager: Opening Pull Request...`);
+  console.log(`[GIT] Git Pro Manager: Opening Pull Request...`);
   try {
     runCmd(`gh pr create --title "${title}" --body "${body}" --fill`);
   } catch (err) {
-    console.log('ℹ️ gh CLI not available or PR already exists. Pushing branch to remote.');
+    console.log('[GIT INFO] gh CLI not available or PR already exists. Pushing branch to remote.');
     runCmd('git push origin HEAD --force-with-lease');
   }
 }

@@ -23,6 +23,6 @@ Reframe requirements, challenge premises, and define the 10-star product spec be
 
 ---
 
-## Output Contract
-- Generate/update product design doc artifact (`implementation_plan.md` or design doc).
-- Pass reframed scope and core user stories directly to **Architect EM Nerd**.
+## Output Contract & Stage Approval Handoff
+- Generate/update product design doc artifact (`implementation_plan.md`).
+- Summarize Stage 1 findings to the user and request explicit approval to proceed to Stage 2 (Architect EM Nerd).
