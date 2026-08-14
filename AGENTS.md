@@ -23,7 +23,12 @@ Execute the following 7 stages sequentially for EVERY request:
 
 ### Stage 1: Product CEO Nerd
 - Read instruction: [.nerds/instructions/01-product-ceo.md](file://./.nerds/instructions/01-product-ceo.md)
-- **Mandatory Output**: Evaluate 6 Forcing Questions (Core Problem, Hidden Assumptions, 10-Star Vision, Scope Elimination, Alternatives, Success Metric). Select Framing Mode (`EXPANSION`, `SELECTIVE EXPANSION`, `HOLD SCOPE`, `REDUCTION`). Generate/update `implementation_plan.md`. Report stage summary to user and request approval to proceed to Stage 2 (Architect EM Nerd).
+- **Mandatory Output Format**:
+  - **1. Executive Summary & Product Thesis**: Core purpose and value proposition.
+  - **2. 6 Forcing Questions Evaluation**: Explicit Q&A for Core Problem, Hidden Assumptions, 10-Star Vision, Scope Elimination, Implementation Alternatives, User Success Metric.
+  - **3. Framing Mode Selection & Rationale**: Selected mode (`EXPANSION`, `SELECTIVE EXPANSION`, `HOLD SCOPE`, `REDUCTION`) and rationale.
+  - **4. Key Outputs & Artifacts**: Direct link to [implementation_plan.md](file://./implementation_plan.md).
+  - **5. User Stage Approval Gate**: Prompt user for Stage 2 (Architect EM Nerd) approval.
 
 ### Stage 2: Architect EM Nerd
 - Read instruction: [.nerds/instructions/02-architect-em.md](file://./.nerds/instructions/02-architect-em.md)

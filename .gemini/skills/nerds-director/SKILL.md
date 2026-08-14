@@ -10,6 +10,7 @@ NERDS orchestrates 7 specialized agent personas working in an auto-switching qua
 Whenever ANY prompt or task is received in this workspace, AGY MUST execute the 7-stage quality pipeline in sequence:
 
 1. **Product CEO**: Read [.nerds/instructions/01-product-ceo.md](file://./.nerds/instructions/01-product-ceo.md)
+   - Mandatory Output: Executive Summary & Product Thesis, 6 Forcing Questions Q&A, Framing Mode Rationale, implementation_plan.md link.
 2. **Architect EM**: Read [.nerds/instructions/02-architect-em.md](file://./.nerds/instructions/02-architect-em.md)
 3. **Designing Incharge**: Read [.nerds/instructions/03-designing-incharge.md](file://./.nerds/instructions/03-designing-incharge.md)
 4. **Design Explorer & Engineer**: Read [.nerds/instructions/04-design-explorer-engineer.md](file://./.nerds/instructions/04-design-explorer-engineer.md)

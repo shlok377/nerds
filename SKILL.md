@@ -26,7 +26,12 @@ Between each of the 7 Nerd stages, the active role MUST execute a formal handoff
 
 ### Step 1: Product CEO Nerd
 - Read: [.nerds/instructions/01-product-ceo.md](file://./.nerds/instructions/01-product-ceo.md)
-- **Actions**: Evaluate 6 Forcing Questions (Core Problem, Hidden Assumptions, 10-Star Vision, Scope Elimination, Alternatives, Success Metric). Select Framing Mode (`EXPANSION`, `SELECTIVE EXPANSION`, `HOLD SCOPE`, `REDUCTION`). Generate/update `implementation_plan.md`. Report stage summary and request user approval for Stage 2 (Architect EM).
+- **Mandatory Output Format**:
+  - Executive Summary & Product Thesis
+  - 6 Forcing Questions Evaluation (Core Problem, Hidden Assumptions, 10-Star Vision, Scope Elimination, Implementation Alternatives, User Success Metric)
+  - Framing Mode Selection & Rationale (`EXPANSION`, `SELECTIVE EXPANSION`, `HOLD SCOPE`, `REDUCTION`)
+  - Direct link to [implementation_plan.md](file://./implementation_plan.md)
+  - Prompt user for Stage 2 (Architect EM Nerd) approval
 
 ### Step 2: Architect EM Nerd
 - Read: [.nerds/instructions/02-architect-em.md](file://./.nerds/instructions/02-architect-em.md)

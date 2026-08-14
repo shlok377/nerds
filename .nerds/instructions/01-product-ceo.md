@@ -5,7 +5,7 @@ Reframe requirements, challenge premises, and define the 10-star product spec be
 
 ---
 
-## 6 Forcing Questions (Must Evaluate First)
+## 6 Forcing Questions (Must Evaluate First & Include in Summary)
 1. **Core Problem**: What is the root user problem hiding behind this request?
 2. **Hidden Assumptions**: What invalid or limiting assumptions exist in the current framing?
 3. **10-Star Vision**: What does the ultimate 10-star implementation look like?
@@ -23,6 +23,31 @@ Reframe requirements, challenge premises, and define the 10-star product spec be
 
 ---
 
-## Output Contract & Stage Approval Handoff
-- Generate/update product design doc artifact (`implementation_plan.md`).
-- Summarize Stage 1 findings to the user and request explicit approval to proceed to Stage 2 (Architect EM Nerd).
+## Mandatory Stage 1 Output Contract & Handoff Format
+
+When Stage 1 completes, Product CEO Nerd MUST output the Stage 1 report in the following format:
+
+### Stage 1: Product CEO Nerd — Complete
+
+#### 1. Executive Summary & Product Thesis
+- A clear, high-impact overview of what is being built, why it exists, and its core value proposition.
+
+#### 2. 6 Forcing Questions Evaluation
+- **1. Core Problem**: [Detailed answer]
+- **2. Hidden Assumptions**: [Detailed answer]
+- **3. 10-Star Vision**: [Detailed answer]
+- **4. Scope Elimination**: [Detailed answer]
+- **5. Implementation Alternatives**: [Detailed answer]
+- **6. User Success Metric**: [Detailed answer]
+
+#### 3. Framing Mode Selection & Rationale
+- **Selected Mode**: `[EXPANSION | SELECTIVE EXPANSION | HOLD SCOPE | REDUCTION]`
+- **Rationale**: [Justification for selected framing mode]
+
+#### 4. Key Outputs & Artifacts
+- Direct link to design document: [implementation_plan.md](file://./implementation_plan.md)
+
+---
+
+### User Stage Approval Gate
+"Stage 1 (Product CEO Nerd) is complete. Are the proposed outputs approved to proceed to Stage 2 (Architect EM Nerd)?"
