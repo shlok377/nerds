@@ -21,10 +21,15 @@ Between each of the 7 Nerd stages, the active role MUST execute a formal handoff
 
 1. **Autonomous Local Dev Server Startup (`run_command`)**:
    - Upon building or modifying web code, AGY MUST autonomously launch a local HTTP server in the background using `run_command` (e.g. `python3 -m http.server 8080`, `npx -y serve -l 8080`, or `npm run dev`).
+   - **Dynamic Port Protocol**: Do not hardcode port `8080`. Automatically target the active port (`http://localhost:<port>`, e.g. `8080`, `5173`, `3000`, or dynamic server port).
    - **STRICTLY BANNED**: NEVER output manual CLI setup instructions asking the user to open terminals, run python/node commands, or start servers manually. AGY MUST launch the server itself.
 
 2. **Autonomous Chromium Visual Verification (`browser_subagent`)**:
-   - QA Lead Nerd MUST autonomously launch `browser_subagent` to open the local server URL (`http://localhost:8080`), navigate pages, inspect live DOM elements, click interactive controls, capture visual proof screenshots into `walkthrough.md`, report findings to the user, and request stage approval.
+   - QA Lead Nerd MUST autonomously launch `browser_subagent` using the official Antigravity IDE payload:
+     - `TaskName`: `"Visual QA Verification"`
+     - `Task`: Detailed instructions to open dynamic local server URL (`http://localhost:<port>`), scroll 3D sections, inspect live DOM elements against `product_design_master.md` & `anti-slop-pro`, click controls, capture visual proof screenshots into `walkthrough.md`, and report findings.
+     - `TaskSummary`: `"Chromium Visual Verification & DOM Inspection"`
+     - `RecordingName`: `"qa_visual_verification"`
    - **STRICTLY BANNED**: NEVER ask the user to open browser windows or test URLs manually. AGY MUST test the application itself under Chromium control.
 
 ---
@@ -77,7 +82,7 @@ Execute the following 7 stages sequentially for EVERY request:
 ### Stage 5: QA Lead Nerd
 - Read instruction: [.nerds/instructions/05-qa-lead.md](file://./.nerds/instructions/05-qa-lead.md)
 - **Mandatory Output Format**:
-  - **1. Stage Summary**: Chromium Visual Verification Results (`browser_subagent`), 3D Motion 60 FPS scroll checks, Anti-Slop & Design Master DOM audit, Root-Cause Bug Fixes, Auto-Generated Regression Tests, Embedded Proof Screenshots in [walkthrough.md](file://./walkthrough.md).
+  - **1. Stage Summary**: Official `browser_subagent` Chromium Visual Verification Results (`TaskName: "Visual QA Verification"` on `http://localhost:<port>`), 3D Motion 60 FPS scroll checks, Anti-Slop & Design Master DOM audit, Root-Cause Bug Fixes, Auto-Generated Regression Tests, Embedded Proof Screenshots in [walkthrough.md](file://./walkthrough.md).
   - **2. Key Outputs & Artifacts**: Direct link to [walkthrough.md](file://./walkthrough.md).
   - **3. User Stage Approval Gate**: Prompt user for Stage 6 (Security Auditor Nerd) and Stage 7 (Git Nerd) approval.
 
