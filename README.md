@@ -9,8 +9,9 @@ NERDS is an autonomous multi-agent web engineering stack for Antigravity IDE. It
 Run this single command in your project root directory:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/shlok377/nerds/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/shlok377/nerds/main/install.sh | bash -s -- -auto
 ```
+
 ## Installation Help:
 Run this single command in your project root directory:
 
