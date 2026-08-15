@@ -15,10 +15,21 @@ Whenever ANY user prompt, feature request, bug fix, layout edit, or coding task 
 
 Between each of the 7 Nerd stages, the active role MUST execute a formal handoff:
 1. **Stage Summary**: State what the current Nerd role accomplished.
-2. **Key Outputs & Artifacts**: Present direct file links to created or updated artifacts (`implementation_plan.md`, `theme.css`, `walkthrough.md`, code files).
+2. **Key Outputs & Artifacts**: Present direct file links to created or updated artifacts (`implementation_plan.md`, `product_design_master.md`, `theme.css`, `walkthrough.md`, code files).
 3. **User Stage Approval Gate**: Ask the user:
    "Stage [X] ([Role Name]) is complete. Are the proposed outputs approved to proceed to Stage [X+1] ([Next Role Name])?"
 4. **Pause for Approval**: Wait for user confirmation before executing the next stage.
+
+---
+
+## Mandatory Post-Fix & Feature Pipeline Protocol
+
+For **EVERY** bug fix, issue fix, or new feature addition:
+1. **Design Master Consultation**: Consult Designing Incharge Nerd & [product_design_master.md](file://./product_design_master.md) to ensure visual/spatial consistency.
+2. **Code Implementation**: Write shippable production code via Design Explorer & Engineer Nerd.
+3. **Chromium Visual Verification**: Launch QA Lead Nerd (`browser_subagent` in Chromium), inspect DOM, click interactive controls, capture screenshot proof in [walkthrough.md](file://./walkthrough.md), report findings to user, and request stage approval.
+4. **Security Audit**: Run Security Auditor Nerd (`security-leak-scanner.js`) for secret leak scanning and doc sync.
+5. **Atomic Git Commit**: Run Git Nerd (`git-pro-manager.js`) to perform conventional micro-commits and GitHub PR management.
 
 ---
 
@@ -26,41 +37,31 @@ Between each of the 7 Nerd stages, the active role MUST execute a formal handoff
 
 ### Step 1: Product CEO Nerd
 - Read: [.nerds/instructions/01-product-ceo.md](file://./.nerds/instructions/01-product-ceo.md)
-- **Mandatory Output Format**:
-  - Executive Summary & Product Thesis
-  - 6 Forcing Questions Evaluation (Core Problem, Hidden Assumptions, 10-Star Vision, Scope Elimination, Implementation Alternatives, User Success Metric)
-  - Framing Mode Selection & Rationale (`EXPANSION`, `SELECTIVE EXPANSION`, `HOLD SCOPE`, `REDUCTION`)
-  - Direct link to [implementation_plan.md](file://./implementation_plan.md)
-  - Prompt user for Stage 2 (Architect EM Nerd) approval
+- **Mandatory Output**: Executive Summary & Product Thesis, 6 Forcing Questions Q&A, Framing Mode Rationale, [implementation_plan.md](file://./implementation_plan.md) link.
 
 ### Step 2: Architect EM Nerd
 - Read: [.nerds/instructions/02-architect-em.md](file://./.nerds/instructions/02-architect-em.md)
-- **Actions**: Establish strict file isolation boundaries (`src/core/`, `src/features/`, `src/components/`), generate Mermaid data flow diagrams, define edge cases and test specifications. Report stage summary and request user approval for Stage 3 (Designing Incharge).
+- **Mandatory Output**: Modular Boundaries (`src/core/`, `src/features/`, `src/components/`), Mermaid Data Flow Diagram, Edge Case Matrix, Test Specs.
 
 ### Step 3: Designing Incharge Nerd
 - Read: [.nerds/instructions/03-designing-incharge.md](file://./.nerds/instructions/03-designing-incharge.md)
-- **Actions**: Enforce 0-10 Quality Gate (Visual Weight, Typography, Spatial Rhythm, Micro-interactions, Contrast). Enforce Strict Anti-Slop Rules:
-  - **NO EMOJIS IN WEB UI** (SVG vector icons only).
-  - **NO BLINKING LED DOTS** (Clean static pill badges only).
-  - **NO NAVY BLUE NEON GLOWS** (Bespoke HSL neutrals with solid 1px borders).
-  - **NO GENERIC CARD GRIDS** (Asymmetrical grids).
-  - Generate/update design system tokens (`src/design-system/theme.css`). Report stage summary and request user approval for Stage 4 (Design Explorer).
+- **Mandatory Output**: Maintain [product_design_master.md](file://./product_design_master.md), 0-10 Quality Gate Scores, Anti-Slop Compliance Check (8 Banned Rules), DX Review Summary, Design System HSL Tokens ([src/design-system/theme.css](file://./src/design-system/theme.css)).
 
 ### Step 4: Design Explorer & Engineer Nerd
 - Read: [.nerds/instructions/04-design-explorer-engineer.md](file://./.nerds/instructions/04-design-explorer-engineer.md)
-- **Actions**: Write 100% shippable, production-ready HTML, CSS, and JS components. Pretext computed layout (~30KB lightweight), framework auto-detection, dynamic state updates. Report stage summary and request user approval for Stage 5 (QA Lead).
+- **Mandatory Output**: Consult [product_design_master.md](file://./product_design_master.md), Component Implementation Summary, Pretext Computed Layout Math (~30KB lightweight), Framework/API Strategy, Code File Links ([index.html](file://./index.html), [src/app.js](file://./src/app.js)).
 
 ### Step 5: QA Lead Nerd
 - Read: [.nerds/instructions/05-qa-lead.md](file://./.nerds/instructions/05-qa-lead.md)
-- **Actions**: Perform real visual verification. Launch `browser_subagent` to render the UI in Chromium, inspect DOM elements, click interactive controls, and capture visual proof screenshots into `walkthrough.md`. Fix any visual/functional bugs directly. Report stage summary and request user approval for Stage 6 (Security Auditor).
+- **Mandatory Output**: Chromium Visual Verification Results (`browser_subagent`), Root-Cause Fixes, Regression Tests, Embedded Proof Screenshots ([walkthrough.md](file://./walkthrough.md)).
 
 ### Step 6: Security Auditor Nerd
 - Read: [.nerds/instructions/06-security-auditor.md](file://./.nerds/instructions/06-security-auditor.md)
-- **Actions**: Execute pre-commit security leak scanner (`node ./scripts/security-leak-scanner.js`). Ensure zero hardcoded API keys or secret tokens. Enforce Iron Law root-cause debugging. Synchronize README.md and documentation. Report stage summary and request user approval for Stage 7 (Git Nerd).
+- **Mandatory Output**: Security Leak Scanner Results (`security-leak-scanner.js`), Iron Law Debugging Log, CWV Performance Metrics, Doc Sync ([README.md](file://./README.md)).
 
 ### Step 7: Git Nerd
 - Read: [.nerds/instructions/07-git-nerd.md](file://./.nerds/instructions/07-git-nerd.md)
-- **Actions**: Run `node ./.nerds/scripts/git-pro-manager.js` to create feature branch (`feat/task-...`), perform conventional atomic micro-commits, push changes, and open/merge GitHub PRs. Summarize final pipeline completion to user.
+- **Mandatory Output**: Post-QA execution of `git-pro-manager.js`, Task Assignee Check, Feature Branch Name, Atomic Micro-Commit Log, Pull Request & GitHub Sync Status.
 
 ---
 
