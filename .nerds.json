@@ -1,6 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/nerds-stack/schema.json",
   "repository": "git+https://github.com/shlok377/nerds.git",
+  "mode": "auto",
   "roleMode": "leader",
   "gitManager": {
     "enabled": true,

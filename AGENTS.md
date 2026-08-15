@@ -6,14 +6,30 @@ Whenever ANY user prompt, request, feature build, bug fix, layout change, or cod
 
 ---
 
-## Inter-Nerd Stage Handoff & User Approval Protocol (Think.live Inspired)
+## Execution Mode Engine: AUTONOMOUS vs. INTERACTIVE
+
+NERDS operates in two execution modes, configured via `.nerds.json` (`"mode": "auto" | "manual"`), CLI installer flags (`-auto`, `-manual`), or dynamic prompt directives:
+
+### Dynamic Mode Resolution Rules (Evaluated Every Request):
+1. **Prompt Command Overrides**:
+   - If prompt contains `/auto`, `-auto`, or `mode: auto` → SET ACTIVE MODE = `AUTONOMOUS`.
+   - If prompt contains `/manual`, `-manual`, or `mode: manual` → SET ACTIVE MODE = `INTERACTIVE`.
+2. **Mid-Stream Approval Handoff**:
+   - If user replies to a Stage Approval Gate with `"yes -auto"`, `"approved /auto"`, or `"/auto"`:
+     → Switch ACTIVE MODE to `AUTONOMOUS` immediately and execute all remaining stages continuously in the same response turn!
+3. **Default Config**:
+   - If no prompt keyword is provided, inspect `"mode"` in `.nerds.json` (Defaults to `AUTONOMOUS` if installed with `-auto`, or `INTERACTIVE` if installed with `-manual`).
+
+---
+
+## Inter-Nerd Stage Handoff & User Approval Protocol
 
 Between each of the 7 Nerd stages, the active role MUST execute a formal handoff:
 1. **Stage Summary**: State what the current Nerd role accomplished.
 2. **Key Outputs & Artifacts**: Present direct file links to created or updated artifacts (`implementation_plan.md`, `product_design_master.md`, `theme.css`, `walkthrough.md`, code files).
-3. **User Stage Approval Gate**: Ask the user:
-   "Stage [X] ([Role Name]) is complete. Are the proposed outputs approved to proceed to Stage [X+1] ([Next Role Name])?"
-4. **Pause for Approval**: Wait for user confirmation before executing the next stage.
+3. **Handoff Execution**:
+   - **IF ACTIVE MODE == `INTERACTIVE`**: Output User Stage Approval Gate: `"Stage [X] ([Role Name]) is complete. Are the proposed outputs approved to proceed to Stage [X+1] ([Next Role Name])?"` and **PAUSE for approval**.
+   - **IF ACTIVE MODE == `AUTONOMOUS`**: Output status indicator: `[AUTONOMOUS MODE: Auto-Advancing to Stage [X+1] ([Next Role Name])...]` and **IMMEDIATELY execute Stage [X+1]** in the same response flow without stopping.
 
 ---
 

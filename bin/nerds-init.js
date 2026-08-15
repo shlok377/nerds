@@ -65,6 +65,8 @@ ${ANSI.bold}USAGE:${ANSI.reset}
   npx nerds [options]
 
 ${ANSI.bold}OPTIONS:${ANSI.reset}
+  -auto, --auto               Set execution mode to AUTONOMOUS (Zero-touch continuous execution)
+  -manual, --manual           Set execution mode to INTERACTIVE (Manual per-stage approval gates)
   --leader, -leader           Set role as Team Leader (Default)
   --member, -member           Set role as Co-worker (Team Member)
   -mem, --members <count>     Number of team members excluding leader (Default: 0)
@@ -80,6 +82,7 @@ ${ANSI.bold}OPTIONS:${ANSI.reset}
 function parseArgs() {
   const args = process.argv.slice(2);
   const options = {
+    mode: 'auto',
     isLeader: true,
     membersCount: 0,
     enableGit: true,
@@ -93,6 +96,10 @@ function parseArgs() {
 
     if (arg === '-h' || arg === '--help') {
       printHelp();
+    } else if (arg === '-auto' || arg === '--auto') {
+      options.mode = 'auto';
+    } else if (arg === '-manual' || arg === '--manual') {
+      options.mode = 'manual';
     } else if (arg === '--leader' || arg === '-leader') {
       options.isLeader = true;
     } else if (arg === '--member' || arg === '-member') {
@@ -244,6 +251,7 @@ AGENT_ALIAS=${options.agentAlias}
   const nerdsConfig = {
     $schema: 'https://raw.githubusercontent.com/nerds-stack/schema.json',
     repository: detectedRemote,
+    mode: options.mode,
     roleMode: options.isLeader ? 'leader' : 'member',
     gitManager: {
       enabled: options.enableGit,

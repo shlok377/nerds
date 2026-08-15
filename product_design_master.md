@@ -46,6 +46,9 @@
 - **Font Stack**: System UI Mono / Inter / JetBrains Mono for code blocks (`ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace`).
 - **Heading Rhythm**: `h1` (2.2rem, font-weight 700), `h2` (1.6rem, font-weight 600, border-bottom 1px solid), `h3` (1.2rem, font-weight 600).
 - **Code Block Specs**: Solid 1px border frame, copy-paste ready, zero prompt line artifacts (`$`), direct bash/JSON/markdown syntax highlighting.
+- **Execution Mode Status Formatting**:
+  - `[AUTONOMOUS MODE: Auto-Advancing to Stage X...]`: Monospaced emerald status pill (`var(--accent-emerald)`). Zero blinking dots or pulsing animations.
+  - `[INTERACTIVE MODE: Waiting for Stage X Approval Gate...]`: Monospaced amber status pill (`var(--accent-amber)`). Clean static border.
 
 ---
 

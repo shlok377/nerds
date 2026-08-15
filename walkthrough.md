@@ -1,55 +1,38 @@
 # QA Lead Verification Walkthrough & Audit Report
 
-This walkthrough documents the visual, structural, and anti-slop quality audit executed on `README.md`.
+This walkthrough documents the visual, structural, and anti-slop quality audit executed for the **NERDS Autonomous Mode Engine**.
 
 ---
 
 ## 1. Executive Summary & Verification Scope
 
-- **Target File**: [README.md](file:///home/shlok/Projects/nerds/README.md)
-- **Primary Requirement**: Primary `README.md` file featuring direct single-line installation (`curl -fsSL https://raw.githubusercontent.com/shlok377/nerds/main/install.sh | bash`) and preset copy-paste commands for Top 5 developer scenarios.
+- **Feature**: Autonomous Mode Engine & Dynamic In-Session Mode Switching (`AUTONOMOUS` vs `INTERACTIVE`).
+- **Primary Files Verified**:
+  - [bin/nerds-init.js](file:///home/shlok/Projects/nerds/bin/nerds-init.js)
+  - [.nerds.json](file:///home/shlok/Projects/nerds/.nerds.json)
+  - [AGENTS.md](file:///home/shlok/Projects/nerds/AGENTS.md)
+  - [README.md](file:///home/shlok/Projects/nerds/README.md)
+  - [testing/mode-engine-validator.js](file:///home/shlok/Projects/nerds/testing/mode-engine-validator.js)
 - **Compliance Baseline**: [anti-slop-pro](file:///home/shlok/Projects/nerds/.nerds/skills/anti-slop-pro/SKILL.md) and [product_design_master.md](file:///home/shlok/Projects/nerds/product_design_master.md).
 
 ---
 
-## 2. Automated QA Validation Results (`testing/readme-qa-validator.js`)
+## 2. Automated QA Validation Results (`testing/mode-engine-validator.js`)
 
 | Test Check | Target Criteria | Status | Detail |
 | :--- | :--- | :--- | :--- |
-| **Singleton Installer Command** | `curl -fsSL https://raw.githubusercontent.com/shlok377/nerds/main/install.sh \| bash` | **PASSED** | String match verified in Quick Start section. |
-| **Top 5 Preset Scenarios** | 5 distinct copy-paste scenarios for Leader, Member, Offline, Alias, and Singleton | **PASSED** | All 5 scenarios verified with valid CLI flags. |
-| **Anti-Slop Compliance** | Zero banned marketing buzzwords (*"seamless"*, *"revolutionary"*, etc.) | **PASSED** | 0 banned words found across 113 lines. |
-| **7 Nerds Quality Pipeline** | Diagram and sequential stage breakdown | **PASSED** | ASCII architecture pipeline structure validated. |
-| **CLI Flags Matrix Table** | Complete parameter reference table | **PASSED** | All CLI flags (`--leader`, `--member`, `--members`, `--no-git`, `--alias`, `--gh-user`, `--gh-token`) validated. |
+| **CLI Flag Parser** | `-auto` and `-manual` parsed in `bin/nerds-init.js` | **PASSED** | CLI options parsing and `printHelp` table verified. |
+| **Manifest Config Persistence** | `"mode": "auto"` written to `.nerds.json` | **PASSED** | Property verified in [.nerds.json](file:///home/shlok/Projects/nerds/.nerds.json). |
+| **Dynamic Directive Rules** | `/auto`, `/manual`, and `"yes -auto"` handovers in `AGENTS.md` | **PASSED** | Protocol section verified in [AGENTS.md](file:///home/shlok/Projects/nerds/AGENTS.md). |
+| **Documentation Sync** | Execution Modes section and `-auto` preset commands in `README.md` | **PASSED** | Verified in [README.md](file:///home/shlok/Projects/nerds/README.md). |
 
 ---
 
-## 3. Verified Top 5 Copy-Paste Scenarios in README.md
+## 3. Verified Execution Scenarios
 
-1. **Standard Singleton Project Setup**:
+1. **Autonomous Setup Installer Command**:
    ```bash
-   curl -fsSL https://raw.githubusercontent.com/shlok377/nerds/main/install.sh | bash
+   curl -fsSL https://raw.githubusercontent.com/shlok377/nerds/main/install.sh | bash -s -- -auto
    ```
-2. **Team Leader Setup (Multi-Agent Lead Mode)**:
-   ```bash
-   curl -fsSL https://raw.githubusercontent.com/shlok377/nerds/main/install.sh | bash -s -- -leader -mem 3 -gh-user myuser -gh-token ghp_mytoken
-   ```
-3. **Team Member Setup (Autonomous Worker Mode)**:
-   ```bash
-   curl -fsSL https://raw.githubusercontent.com/shlok377/nerds/main/install.sh | bash -s -- -member -alias agent-2 -gh-user myuser -gh-token ghp_mytoken
-   ```
-4. **Offline / No-Git Local Mode**:
-   ```bash
-   curl -fsSL https://raw.githubusercontent.com/shlok377/nerds/main/install.sh | bash -s -- -nogit
-   ```
-5. **Custom Agent Alias Setup**:
-   ```bash
-   curl -fsSL https://raw.githubusercontent.com/shlok377/nerds/main/install.sh | bash -s -- -alias custom-architect-1 -gh-user myuser -gh-token ghp_mytoken
-   ```
-
----
-
-## 4. Visual & Structural Layout Proof
-
-- Primary [README.md](file:///home/shlok/Projects/nerds/README.md) rendered with high contrast typography and monospaced code blocks.
-- Clean zero-draft workspace.
+2. **In-Chat Mode Override**: Typing `/auto` or `-auto` in prompt switches active session to Autonomous mode.
+3. **Mid-Stream Handover**: Replying `"yes -auto"` or `"approved /auto"` to any stage approval gate triggers immediate continuous execution for all remaining stages.
