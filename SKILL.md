@@ -38,7 +38,7 @@ Between each of the 7 Nerd stages, the active role MUST execute a formal handoff
 
 ### Step 1: Product CEO Nerd
 - Read: [.nerds/instructions/01-product-ceo.md](file://./.nerds/instructions/01-product-ceo.md)
-- **Mandatory Output**: Executive Summary & Product Thesis, 6 Forcing Questions Q&A, Framing Mode Rationale, [implementation_plan.md](file://./implementation_plan.md) link.
+- **Mandatory Output**: Executive Summary & Product Thesis, 3D Motion Scroll mode selection ([motion-3d-scroll](file://./.nerds/skills/motion-3d-scroll/SKILL.md)), 6 Forcing Questions Q&A, Framing Mode Rationale, [implementation_plan.md](file://./implementation_plan.md) link.
 
 ### Step 2: Architect EM Nerd
 - Read: [.nerds/instructions/02-architect-em.md](file://./.nerds/instructions/02-architect-em.md)
@@ -46,15 +46,15 @@ Between each of the 7 Nerd stages, the active role MUST execute a formal handoff
 
 ### Step 3: Designing Incharge Nerd
 - Read: [.nerds/instructions/03-designing-incharge.md](file://./.nerds/instructions/03-designing-incharge.md)
-- **Mandatory Output**: Maintain [product_design_master.md](file://./product_design_master.md), 0-10 Quality Gate Scores, Anti-Slop Compliance Check (8 Banned Rules), DX Review Summary, Design System HSL Tokens ([src/design-system/theme.css](file://./src/design-system/theme.css)).
+- **Mandatory Output**: Maintain [product_design_master.md](file://./product_design_master.md) (including 3D camera specs), trigger `generate_image` for working 3D renders, 0-10 Quality Gate Scores, Anti-Slop Compliance Check (8 Banned Rules), DX Review Summary, Design System HSL Tokens ([src/design-system/theme.css](file://./src/design-system/theme.css)).
 
 ### Step 4: Design Explorer & Engineer Nerd
 - Read: [.nerds/instructions/04-design-explorer-engineer.md](file://./.nerds/instructions/04-design-explorer-engineer.md)
-- **Mandatory Output**: Consult [product_design_master.md](file://./product_design_master.md), Autonomously start background server via `run_command`, Component Implementation Summary, Pretext Layout Math (~30KB lightweight), Framework/API Strategy, Code File Links ([index.html](file://./index.html), [src/app.js](file://./src/app.js)).
+- **Mandatory Output**: Consult [product_design_master.md](file://./product_design_master.md), Autonomously start background server via `run_command`, 3D Motion Scroll controller implementation ([motion-3d-scroll](file://./.nerds/skills/motion-3d-scroll/SKILL.md)) with Web Audio FX, Component Implementation Summary, Pretext Layout Math (~30KB lightweight), Framework/API Strategy, Code File Links ([index.html](file://./index.html), [src/app.js](file://./src/app.js)).
 
 ### Step 5: QA Lead Nerd
 - Read: [.nerds/instructions/05-qa-lead.md](file://./.nerds/instructions/05-qa-lead.md)
-- **Mandatory Output**: Chromium Visual Verification Results via `browser_subagent`, Anti-Slop DOM audit, Root-Cause Fixes, Regression Tests, Embedded Proof Screenshots ([walkthrough.md](file://./walkthrough.md)).
+- **Mandatory Output**: Chromium Visual Verification Results via `browser_subagent`, 3D Motion 60 FPS scroll checks, Anti-Slop DOM audit, Root-Cause Fixes, Regression Tests, Embedded Proof Screenshots ([walkthrough.md](file://./walkthrough.md)).
 
 ### Step 6: Security Auditor Nerd
 - Read: [.nerds/instructions/06-security-auditor.md](file://./.nerds/instructions/06-security-auditor.md)

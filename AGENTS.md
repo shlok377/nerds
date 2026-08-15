@@ -47,7 +47,7 @@ Execute the following 7 stages sequentially for EVERY request:
 ### Stage 1: Product CEO Nerd
 - Read instruction: [.nerds/instructions/01-product-ceo.md](file://./.nerds/instructions/01-product-ceo.md)
 - **Mandatory Output Format**:
-  - **1. Executive Summary & Product Thesis**: Core purpose and value proposition.
+  - **1. Executive Summary & Product Thesis**: Core purpose, value proposition, and 3D Motion Scroll mode selection ([motion-3d-scroll](file://./.nerds/skills/motion-3d-scroll/SKILL.md)).
   - **2. 6 Forcing Questions Evaluation**: Explicit Q&A for Core Problem, Hidden Assumptions, 10-Star Vision, Scope Elimination, Implementation Alternatives, User Success Metric.
   - **3. Framing Mode Selection & Rationale**: Selected mode (`EXPANSION`, `SELECTIVE EXPANSION`, `HOLD SCOPE`, `REDUCTION`) and rationale.
   - **4. Key Outputs & Artifacts**: Direct link to [implementation_plan.md](file://./implementation_plan.md).
@@ -63,21 +63,21 @@ Execute the following 7 stages sequentially for EVERY request:
 ### Stage 3: Designing Incharge Nerd
 - Read instruction: [.nerds/instructions/03-designing-incharge.md](file://./.nerds/instructions/03-designing-incharge.md)
 - **Mandatory Output Format**:
-  - **1. Stage Summary**: Create/update [product_design_master.md](file://./product_design_master.md) (design language, small design identities, HSL tokens, user choices), 0-10 Quality Gate Audit Scores, Anti-Slop Compliance Check (8 Banned Rules), DX Review Summary.
+  - **1. Stage Summary**: Create/update [product_design_master.md](file://./product_design_master.md) (design language, 3D camera specs, HSL tokens, user choices), trigger `generate_image` for working 3D renders, 0-10 Quality Gate Audit Scores, Anti-Slop Compliance Check (8 Banned Rules), DX Review Summary.
   - **2. Key Outputs & Artifacts**: Direct links to [product_design_master.md](file://./product_design_master.md) and [src/design-system/theme.css](file://./src/design-system/theme.css).
   - **3. User Stage Approval Gate**: Prompt user for Stage 4 (Design Explorer & Engineer Nerd) approval.
 
 ### Stage 4: Design Explorer & Engineer Nerd
 - Read instruction: [.nerds/instructions/04-design-explorer-engineer.md](file://./.nerds/instructions/04-design-explorer-engineer.md)
 - **Mandatory Output Format**:
-  - **1. Stage Summary**: Pre-implementation consultation with [product_design_master.md](file://./product_design_master.md), Autonomous background local server startup via `run_command`, Component & Page Implementation Summary, Pretext Computed Layout Math Spec (~30KB lightweight), Framework Auto-Detection & Smart API Routing.
+  - **1. Stage Summary**: Pre-implementation consultation with [product_design_master.md](file://./product_design_master.md), Autonomous background local server startup via `run_command`, 3D Motion Scroll controller implementation ([motion-3d-scroll](file://./.nerds/skills/motion-3d-scroll/SKILL.md)) with Web Audio FX, Component & Page Implementation Summary, Pretext Computed Layout Math Spec (~30KB lightweight), Framework Auto-Detection & Smart API Routing.
   - **2. Key Outputs & Artifacts**: Direct links to created code files ([index.html](file://./index.html), [src/app.js](file://./src/app.js)).
   - **3. User Stage Approval Gate**: Prompt user for Stage 5 (QA Lead Nerd) approval.
 
 ### Stage 5: QA Lead Nerd
 - Read instruction: [.nerds/instructions/05-qa-lead.md](file://./.nerds/instructions/05-qa-lead.md)
 - **Mandatory Output Format**:
-  - **1. Stage Summary**: Chromium Visual Verification Results (`browser_subagent`), Anti-Slop & Design Master DOM audit, Root-Cause Bug Fixes, Auto-Generated Regression Tests, Embedded Proof Screenshots in [walkthrough.md](file://./walkthrough.md).
+  - **1. Stage Summary**: Chromium Visual Verification Results (`browser_subagent`), 3D Motion 60 FPS scroll checks, Anti-Slop & Design Master DOM audit, Root-Cause Bug Fixes, Auto-Generated Regression Tests, Embedded Proof Screenshots in [walkthrough.md](file://./walkthrough.md).
   - **2. Key Outputs & Artifacts**: Direct link to [walkthrough.md](file://./walkthrough.md).
   - **3. User Stage Approval Gate**: Prompt user for Stage 6 (Security Auditor Nerd) and Stage 7 (Git Nerd) approval.
 
