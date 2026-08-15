@@ -22,14 +22,15 @@ Between each of the 7 Nerd stages, the active role MUST execute a formal handoff
 
 ---
 
-## Mandatory Post-Fix & Feature Pipeline Protocol
+## Autonomous Server & Browser Execution Protocol (STRICT MANDATE)
 
-For **EVERY** bug fix, issue fix, or new feature addition:
-1. **Design Master Consultation**: Consult Designing Incharge Nerd & [product_design_master.md](file://./product_design_master.md) to ensure visual/spatial consistency.
-2. **Code Implementation**: Write shippable production code via Design Explorer & Engineer Nerd.
-3. **Chromium Visual Verification**: Launch QA Lead Nerd (`browser_subagent` in Chromium), inspect DOM, click interactive controls, capture screenshot proof in [walkthrough.md](file://./walkthrough.md), report findings to user, and request stage approval.
-4. **Security Audit**: Run Security Auditor Nerd (`security-leak-scanner.js`) for secret leak scanning and doc sync.
-5. **Atomic Git Commit**: Run Git Nerd (`git-pro-manager.js`) to perform conventional micro-commits and GitHub PR management.
+1. **Autonomous Local Dev Server Startup (`run_command`)**:
+   - Upon building or modifying web code, AGY MUST autonomously launch a local HTTP server in the background using `run_command` (e.g. `python3 -m http.server 8080`, `npx -y serve -l 8080`, or `npm run dev`).
+   - **STRICTLY BANNED**: NEVER output manual CLI setup instructions asking the user to open terminals, run python/node commands, or start servers manually. AGY MUST launch the server itself.
+
+2. **Autonomous Chromium Visual Verification (`browser_subagent`)**:
+   - QA Lead Nerd MUST autonomously launch `browser_subagent` to open the local server URL (`http://localhost:8080`), navigate pages, inspect live DOM elements, click interactive controls, capture visual proof screenshots into `walkthrough.md`, report findings to the user, and request stage approval.
+   - **STRICTLY BANNED**: NEVER ask the user to open browser windows or test URLs manually. AGY MUST test the application itself under Chromium control.
 
 ---
 
@@ -49,11 +50,11 @@ For **EVERY** bug fix, issue fix, or new feature addition:
 
 ### Step 4: Design Explorer & Engineer Nerd
 - Read: [.nerds/instructions/04-design-explorer-engineer.md](file://./.nerds/instructions/04-design-explorer-engineer.md)
-- **Mandatory Output**: Consult [product_design_master.md](file://./product_design_master.md), Component Implementation Summary, Pretext Computed Layout Math (~30KB lightweight), Framework/API Strategy, Code File Links ([index.html](file://./index.html), [src/app.js](file://./src/app.js)).
+- **Mandatory Output**: Consult [product_design_master.md](file://./product_design_master.md), Autonomously start background server via `run_command`, Component Implementation Summary, Pretext Layout Math (~30KB lightweight), Framework/API Strategy, Code File Links ([index.html](file://./index.html), [src/app.js](file://./src/app.js)).
 
 ### Step 5: QA Lead Nerd
 - Read: [.nerds/instructions/05-qa-lead.md](file://./.nerds/instructions/05-qa-lead.md)
-- **Mandatory Output**: Chromium Visual Verification Results (`browser_subagent`), Root-Cause Fixes, Regression Tests, Embedded Proof Screenshots ([walkthrough.md](file://./walkthrough.md)).
+- **Mandatory Output**: Chromium Visual Verification Results via `browser_subagent`, Anti-Slop DOM audit, Root-Cause Fixes, Regression Tests, Embedded Proof Screenshots ([walkthrough.md](file://./walkthrough.md)).
 
 ### Step 6: Security Auditor Nerd
 - Read: [.nerds/instructions/06-security-auditor.md](file://./.nerds/instructions/06-security-auditor.md)
