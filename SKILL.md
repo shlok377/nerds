@@ -37,7 +37,7 @@ Between each of the 7 Nerd stages, the active role MUST execute a formal handoff
 ## 7-Stage Mandatory Pipeline Sequence
 
 ### Step 1: Product CEO Nerd
-- Read: [.nerds/instructions/01-product-ceo.md](file://./.nerds/instructions/01-product-ceo.md) & [.nerds/skills/anti-slop-pro/SKILL.md](file://./.nerds/skills/anti-slop-pro/SKILL.md)
+- Read: [.nerds/instructions/01-product-ceo.md](file://./.nerds/instructions/01-product-ceo.md)
 - **Mandatory Output**: Executive Summary & Product Thesis, 6 Forcing Questions Q&A, Framing Mode Rationale, [implementation_plan.md](file://./implementation_plan.md) link.
 
 ### Step 2: Architect EM Nerd
@@ -45,12 +45,12 @@ Between each of the 7 Nerd stages, the active role MUST execute a formal handoff
 - **Mandatory Output**: Modular Boundaries (`src/core/`, `src/features/`, `src/components/`), Mermaid Data Flow Diagram, Edge Case Matrix, Test Specs.
 
 ### Step 3: Designing Incharge Nerd
-- Read: [.nerds/instructions/03-designing-incharge.md](file://./.nerds/instructions/03-designing-incharge.md) & [.nerds/skills/ponytail-engine/SKILL.md](file://./.nerds/skills/ponytail-engine/SKILL.md)
-- **Mandatory Output**: Maintain [product_design_master.md](file://./product_design_master.md) (including Backlit UI interactive graphs & GSAP/anime.js/motion.dev micro-motion), 0-10 Quality Gate Scores, Anti-Slop Compliance Check (8 Banned Rules), DX Review Summary, Design System HSL Tokens ([src/design-system/theme.css](file://./src/design-system/theme.css)).
+- Read: [.nerds/instructions/03-designing-incharge.md](file://./.nerds/instructions/03-designing-incharge.md)
+- **Mandatory Output**: Maintain [product_design_master.md](file://./product_design_master.md), 0-10 Quality Gate Scores, Anti-Slop Compliance Check (8 Banned Rules), DX Review Summary, Design System HSL Tokens ([src/design-system/theme.css](file://./src/design-system/theme.css)).
 
 ### Step 4: Design Explorer & Engineer Nerd
-- Read: [.nerds/instructions/04-design-explorer-engineer.md](file://./.nerds/instructions/04-design-explorer-engineer.md) & [.nerds/skills/ponytail-engine/SKILL.md](file://./.nerds/skills/ponytail-engine/SKILL.md)
-- **Mandatory Output**: Consult [product_design_master.md](file://./product_design_master.md), Autonomously start background server via `run_command`, `ponytail-engine` spatial layout math, Backlit UI interactive spline graph implementation, Component Summary, Framework/API Strategy, Code File Links ([index.html](file://./index.html), [src/app.js](file://./src/app.js)).
+- Read: [.nerds/instructions/04-design-explorer-engineer.md](file://./.nerds/instructions/04-design-explorer-engineer.md)
+- **Mandatory Output**: Consult [product_design_master.md](file://./product_design_master.md), Autonomously start background server via `run_command`, Component Implementation Summary, Pretext Layout Math (~30KB lightweight), Framework/API Strategy, Code File Links ([index.html](file://./index.html), [src/app.js](file://./src/app.js)).
 
 ### Step 5: QA Lead Nerd
 - Read: [.nerds/instructions/05-qa-lead.md](file://./.nerds/instructions/05-qa-lead.md)
