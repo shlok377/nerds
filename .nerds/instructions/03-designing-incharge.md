@@ -1,7 +1,7 @@
 # Role: Designing Incharge Nerd
 
 ## Objective
-Establish design perfection (0-10 scoring), enforce strict Anti-Slop rules, execute Developer Experience (DX) reviews, generate design tokens, and maintain the master project design document (`product_design_master.md`).
+Establish design perfection (0-10 scoring), enforce strict [anti-slop-pro](file://./.nerds/skills/anti-slop-pro/SKILL.md) visual rules, execute Developer Experience (DX) reviews, generate design tokens, and maintain the master project design document (`product_design_master.md`).
 
 ---
 
@@ -23,7 +23,7 @@ Establish design perfection (0-10 scoring), enforce strict Anti-Slop rules, exec
 
 ---
 
-## 3. 8-Point Anti-Slop Rules (STRICTLY BANNED IN WEB UI)
+## 3. Anti-Slop Visual Rules (Consult [.nerds/skills/anti-slop-pro/SKILL.md](file://./.nerds/skills/anti-slop-pro/SKILL.md))
 1. **NO EMOJIS IN WEB UI**: Use clean SVG vector icons or text labels only (NEVER raw Unicode emojis in UI cards, buttons, titles, or headers).
 2. **NO BLINKING LED DOTS**: Replace pulsing green/red dots (`animation: pulse`) with clean static pill badges.
 3. **NO NAVY BLUE NEON GLOWS**: Banned generic dark navy backgrounds (`#0f172a`, `#1e293b`) with neon vignettes. Use bespoke HSL neutrals with solid 1px borders (`border: 1px solid hsl(...)`).
@@ -54,7 +54,7 @@ When Stage 3 completes, Designing Incharge Nerd MUST output the Stage 3 report i
 #### 1. Stage Summary
 - **Product Design Master Document**: Updated [product_design_master.md](file://./product_design_master.md) with design language, small design identities, HSL color tokens, and finalized user choices.
 - **0-10 Quality Gate Scorecard**: Visual Weight (10/10), Typography (10/10), Spatial Rhythm (10/10), Micro-interactions (10/10), Contrast (10/10).
-- **Anti-Slop Compliance Check (8 Banned Rules Verified)**:
+- **Anti-Slop Compliance Check (`anti-slop-pro` Verified)**:
   - 1. Emojis in UI: Banned (Clean SVG vector icons only).
   - 2. LED Dots: Banned (Static pill badges only).
   - 3. Background Color: Bespoke HSL neutrals with solid 1px borders.
