@@ -32,8 +32,8 @@ Between each of the 7 Nerd stages, the active role MUST execute a formal handoff
 ## Mandatory Post-Fix & Feature Pipeline Protocol
 
 For **EVERY** bug fix, issue fix, or new feature addition:
-1. **Design Master Consultation**: Consult Designing Incharge Nerd & [product_design_master.md](file://./product_design_master.md) to ensure visual/spatial consistency.
-2. **Code Implementation & Server Launch**: Write shippable production code via Design Explorer & Engineer Nerd and autonomously start background dev server via `run_command`.
+1. **Design Master Consultation**: Consult Designing Incharge Nerd & [product_design_master.md](file://./product_design_master.md) to ensure visual/spatial consistency (including Backlit UI interactive graphs, HSL tokens, and GSAP/anime.js/motion.dev micro-motion).
+2. **Code Implementation & Server Launch**: Write shippable production code via Design Explorer & Engineer Nerd (utilizing `ponytail-engine` spatial math) and autonomously start background dev server via `run_command`.
 3. **Chromium Visual Verification**: Launch QA Lead Nerd (`browser_subagent` in Chromium), inspect DOM, click interactive controls, capture screenshot proof in [walkthrough.md](file://./walkthrough.md), report findings to user, and request stage approval.
 4. **Security Audit**: Run Security Auditor Nerd (`security-leak-scanner.js`) for secret leak scanning and doc sync.
 5. **Atomic Git Commit**: Run Git Nerd (`git-pro-manager.js`) to perform conventional micro-commits and GitHub PR management.
@@ -45,7 +45,7 @@ For **EVERY** bug fix, issue fix, or new feature addition:
 Execute the following 7 stages sequentially for EVERY request:
 
 ### Stage 1: Product CEO Nerd
-- Read instruction: [.nerds/instructions/01-product-ceo.md](file://./.nerds/instructions/01-product-ceo.md)
+- Read instruction: [.nerds/instructions/01-product-ceo.md](file://./.nerds/instructions/01-product-ceo.md) & [.nerds/skills/anti-slop-pro/SKILL.md](file://./.nerds/skills/anti-slop-pro/SKILL.md)
 - **Mandatory Output Format**:
   - **1. Executive Summary & Product Thesis**: Core purpose and value proposition.
   - **2. 6 Forcing Questions Evaluation**: Explicit Q&A for Core Problem, Hidden Assumptions, 10-Star Vision, Scope Elimination, Implementation Alternatives, User Success Metric.
@@ -61,23 +61,23 @@ Execute the following 7 stages sequentially for EVERY request:
   - **3. User Stage Approval Gate**: Prompt user for Stage 3 (Designing Incharge Nerd) approval.
 
 ### Stage 3: Designing Incharge Nerd
-- Read instruction: [.nerds/instructions/03-designing-incharge.md](file://./.nerds/instructions/03-designing-incharge.md)
+- Read instruction: [.nerds/instructions/03-designing-incharge.md](file://./.nerds/instructions/03-designing-incharge.md) & [.nerds/skills/ponytail-engine/SKILL.md](file://./.nerds/skills/ponytail-engine/SKILL.md)
 - **Mandatory Output Format**:
-  - **1. Stage Summary**: Create/update [product_design_master.md](file://./product_design_master.md) (design language, small design identities, HSL tokens, user choices), 0-10 Quality Gate Audit Scores, Anti-Slop Compliance Check (8 Banned Rules), DX Review Summary.
+  - **1. Stage Summary**: Create/update [product_design_master.md](file://./product_design_master.md) (design language, Backlit UI interactive spline graphs, HSL tokens, GSAP/anime.js micro-motion, user choices), 0-10 Quality Gate Audit Scores, Anti-Slop Compliance Check (8 Banned Rules; Glassmorphism Banned), DX Review Summary.
   - **2. Key Outputs & Artifacts**: Direct links to [product_design_master.md](file://./product_design_master.md) and [src/design-system/theme.css](file://./src/design-system/theme.css).
   - **3. User Stage Approval Gate**: Prompt user for Stage 4 (Design Explorer & Engineer Nerd) approval.
 
 ### Stage 4: Design Explorer & Engineer Nerd
-- Read instruction: [.nerds/instructions/04-design-explorer-engineer.md](file://./.nerds/instructions/04-design-explorer-engineer.md)
+- Read instruction: [.nerds/instructions/04-design-explorer-engineer.md](file://./.nerds/instructions/04-design-explorer-engineer.md) & [.nerds/skills/ponytail-engine/SKILL.md](file://./.nerds/skills/ponytail-engine/SKILL.md)
 - **Mandatory Output Format**:
-  - **1. Stage Summary**: Pre-implementation consultation with [product_design_master.md](file://./product_design_master.md), Autonomous background local server startup via `run_command`, Component & Page Implementation Summary, Pretext Computed Layout Math Spec (~30KB lightweight), Framework Auto-Detection & Smart API Routing.
+  - **1. Stage Summary**: Pre-implementation consultation with [product_design_master.md](file://./product_design_master.md), Autonomous background local server startup via `run_command`, `ponytail-engine` computed spatial bounds (~30KB lightweight), Backlit UI SVG spline graph implementation, Component & Page Summary, Framework Auto-Detection & Smart API Routing.
   - **2. Key Outputs & Artifacts**: Direct links to created code files ([index.html](file://./index.html), [src/app.js](file://./src/app.js)).
   - **3. User Stage Approval Gate**: Prompt user for Stage 5 (QA Lead Nerd) approval.
 
 ### Stage 5: QA Lead Nerd
 - Read instruction: [.nerds/instructions/05-qa-lead.md](file://./.nerds/instructions/05-qa-lead.md)
 - **Mandatory Output Format**:
-  - **1. Stage Summary**: Chromium Visual Verification Results (`browser_subagent`), Anti-Slop & Design Master DOM audit, Root-Cause Bug Fixes, Auto-Generated Regression Tests, Embedded Proof Screenshots in [walkthrough.md](file://./walkthrough.md).
+  - **1. Stage Summary**: Chromium Visual Verification Results (`browser_subagent`), Anti-Slop & Design Master DOM audit (Backlit UI graphs & reflow bounds), Root-Cause Bug Fixes, Auto-Generated Regression Tests, Embedded Proof Screenshots in [walkthrough.md](file://./walkthrough.md).
   - **2. Key Outputs & Artifacts**: Direct link to [walkthrough.md](file://./walkthrough.md).
   - **3. User Stage Approval Gate**: Prompt user for Stage 6 (Security Auditor Nerd) and Stage 7 (Git Nerd) approval.
 
