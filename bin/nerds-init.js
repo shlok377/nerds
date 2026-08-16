@@ -30,6 +30,19 @@ const ANSI = {
   dim: '\x1b[2m'
 };
 
+const isInteractive = process.stdout.isTTY && !process.env.CI;
+
+function randomSleep(minMs, maxMs = minMs) {
+  if (!isInteractive) return Promise.resolve();
+  const actualMax = Math.max(minMs, maxMs);
+  const ms = Math.floor(minMs + Math.random() * (actualMax - minMs));
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function sleep(ms) {
+  return randomSleep(ms, ms);
+}
+
 const REQUIRED_FILES = [
   '.gemini/instructions.md',
   'AGENTS.md',
@@ -232,21 +245,65 @@ function padLine(text, width = 74) {
   return text + ' '.repeat(padding);
 }
 
-function renderTelemetry(options, detectedRemote) {
+async function renderTelemetry(options, detectedRemote) {
   const repoStr = padLine(`► TARGET REPOSITORY : ${detectedRemote}`);
   const modeStr = padLine(`► EXECUTION MODE    : [ ${options.mode.toUpperCase()} / ${options.mode === 'auto' ? 'CONTINUOUS' : 'INTERACTIVE'} ]`);
   const roleStr = padLine(`► ROLE ARCHITECTURE : ${options.isLeader ? 'TEAM LEADER' : 'CO-WORKER'} (SUPERVISORY ${options.agentAlias.toUpperCase()})`);
   const countStr = padLine(`► CO-WORKERS COUNT  : ${options.membersCount} (${options.membersCount > 0 ? 'TEAM RUNTIME' : 'SINGLETON EXECUTION'})`);
 
   console.log(`┌── TELEMETRY DIAGNOSTICS ──────────────────────────────────────────────────┐`);
+  await randomSleep(80, 160);
   console.log(`│  ${repoStr}│`);
+  await randomSleep(80, 160);
   console.log(`│  ${modeStr}│`);
+  await randomSleep(80, 160);
   console.log(`│  ${roleStr}│`);
+  await randomSleep(80, 160);
   console.log(`│  ${countStr}│`);
   console.log(`└───────────────────────────────────────────────────────────────────────────┘`);
 }
 
-function renderPipeline() {
+async function animateStageLine(s) {
+  const totalBlocks = 32;
+  const namePadded = s.name.padEnd(18, ' ');
+
+  if (!isInteractive) {
+    const bar = ANSI.green + '█'.repeat(totalBlocks) + ANSI.reset;
+    const line = padLine(`[${s.num}] ${namePadded} [${bar}] 100% [OK]`);
+    console.log(`│  ${line}│`);
+    return;
+  }
+
+  // 4 to 5 randomized thresholds
+  const step1 = Math.floor(4 + Math.random() * 6);    // ~12-30%
+  const step2 = Math.floor(13 + Math.random() * 6);   // ~40-60%
+  const step3 = Math.floor(21 + Math.random() * 5);   // ~65-80%
+  const step4 = Math.floor(28 + Math.random() * 3);   // ~87-96%
+  const thresholds = [step1, step2, step3, step4, totalBlocks];
+
+  for (let t = 0; t < thresholds.length; t++) {
+    const filledCount = Math.min(totalBlocks, thresholds[t]);
+    const percent = Math.min(100, Math.floor((filledCount / totalBlocks) * 100));
+    const filledBlocks = ANSI.green + '█'.repeat(filledCount) + ANSI.reset;
+    const emptyBlocks = ' '.repeat(totalBlocks - filledCount);
+    const bar = filledBlocks + emptyBlocks;
+
+    const statusText = percent === 100
+      ? `${ANSI.green}100% [OK]${ANSI.reset}`
+      : `${ANSI.yellow}${String(percent).padStart(3, ' ')}% [...]${ANSI.reset}`;
+
+    const line = padLine(`[${s.num}] ${namePadded} [${bar}] ${statusText}`);
+    process.stdout.write(`\r│  ${line}│`);
+
+    if (percent < 100) {
+      await randomSleep(40, 110);
+    }
+  }
+  process.stdout.write('\n');
+  await randomSleep(100, 220);
+}
+
+async function renderPipeline() {
   const stages = [
     { num: '1/7', name: 'PRODUCT CEO' },
     { num: '2/7', name: 'ARCHITECT EM' },
@@ -259,20 +316,22 @@ function renderPipeline() {
 
   console.log(`\n┌── STAGE EXECUTION PIPELINE ───────────────────────────────────────────────┐`);
   for (const s of stages) {
-    const bar = ANSI.green + '████████████████████████████████' + ANSI.reset;
-    const namePadded = s.name.padEnd(18, ' ');
-    const line = padLine(`[${s.num}] ${namePadded} [${bar}] 100% [OK]`);
-    console.log(`│  ${line}│`);
+    await animateStageLine(s);
   }
   console.log(`└───────────────────────────────────────────────────────────────────────────┘`);
 }
 
-function renderMatrix(hasEnv) {
+async function renderMatrix(hasEnv) {
   console.log(`\n┌── PROVISIONED INFRASTRUCTURE MATRIX ──────────────────────────────────────┐`);
+  await randomSleep(90, 180);
   console.log(`│  ${padLine(ANSI.green + '✔' + ANSI.reset + ' .gemini/instructions.md        [PROVISIONED]')}│`);
+  await randomSleep(90, 180);
   console.log(`│  ${padLine(ANSI.green + '✔' + ANSI.reset + ' AGENTS.md                      [PROVISIONED]')}│`);
+  await randomSleep(90, 180);
   console.log(`│  ${padLine(ANSI.green + '✔' + ANSI.reset + ' .nerds/instructions/01..07.md  [PROVISIONED - 7 ROLES ACTIVE]')}│`);
+  await randomSleep(90, 180);
   console.log(`│  ${padLine(ANSI.green + '✔' + ANSI.reset + ' .nerds/scripts/*.js            [PROVISIONED - GIT & SCANNER LOCKED]')}│`);
+  await randomSleep(90, 180);
   if (hasEnv) {
     console.log(`│  ${padLine(ANSI.green + '✔' + ANSI.reset + ' .env.local                     [HARDENED 0600 PERMISSIONS]')}│`);
   } else {
@@ -281,7 +340,7 @@ function renderMatrix(hasEnv) {
   console.log(`└───────────────────────────────────────────────────────────────────────────┘`);
 }
 
-function renderFooter() {
+async function renderFooter() {
   console.log(`\n╔═══════════════════════════════════════════════════════════════════════════╗`);
   console.log(`║ ${ANSI.bold}${ANSI.green}[SYSTEM STATUS] INITIALIZATION COMPLETE${ANSI.reset}                                   ║`);
   console.log(`║ All 7 autonomous agent instructions & security policies locked down.      ║`);
@@ -294,7 +353,10 @@ async function main() {
   const detectedRemote = getGitRemoteOrigin();
 
   renderBoxHeader();
-  renderTelemetry(options, detectedRemote);
+  await randomSleep(200, 350);
+
+  await renderTelemetry(options, detectedRemote);
+  await randomSleep(250, 450);
 
   // 1. Provision all NERDS role instructions & scripts
   await provisionFiles();
@@ -341,9 +403,13 @@ AGENT_ALIAS=${options.agentAlias}
     fs.writeFileSync(gitignorePath, gitignoreContent);
   }
 
-  renderPipeline();
-  renderMatrix(hasEnv);
-  renderFooter();
+  await renderPipeline();
+  await randomSleep(250, 450);
+
+  await renderMatrix(hasEnv);
+  await randomSleep(300, 500);
+
+  await renderFooter();
 }
 
 main();

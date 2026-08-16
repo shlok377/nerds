@@ -48,11 +48,16 @@
 │  ✔ .env.local                     [HARDENED 0600]         │
 └───────────────────────────────────────────────────────────┘
 
-╔═══════════════════════════════════════════════════════════╗
-║ [SYSTEM STATUS] INITIALIZATION COMPLETE                   ║
-║ All 7 autonomous agent instructions & security locked.    ║
-║ Run `npx nerds` or prompt AGY directly to initiate.       ║
-╚═══════════════════════════════════════════════════════════╝
+---
+
+## 3. Tactile Organic Animation Specifications
+
+- **Random Sleep Engine**: `randomSleep(min, max)` calculates variable micro-delays for each line item and progress step.
+- **Header & Telemetry Reveal**: Header double-line box renders → `200-350ms` delay → Telemetry box & 4 detail lines render sequentially (`80-180ms` between lines).
+- **Stage Execution Pipeline Organic Bar Filling**: Each stage 32-block progress bar fills dynamically in-place from 0% to 100% across 4-6 randomized thresholds (e.g. ~18%, ~42%, ~68%, ~91%, 100%) with variable tick micro-delays (`40ms - 110ms`) using `\r` carriage return overwriting. Upon reaching 100%, status locks `100% [OK]` in green (`var(--accent-emerald)`) with a `100-250ms` inter-stage pause before advancing to the next stage line.
+- **Provisioned Infrastructure Matrix Reveal**: 5 status checkmark lines render sequentially (`90-220ms` per line) → `300-500ms` delay.
+- **System Status Footer Reveal**: Initialization Complete status double-box renders as final conclusion → `300-600ms` final pause.
+- **CI / Non-TTY Fallback**: Total animation duration ~2.5 to 3.5 seconds in interactive terminal; `0ms` delay in CI non-TTY environments.
 ```
 
 ---
