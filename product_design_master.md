@@ -1,71 +1,76 @@
 # NERDS Product Design Master Document
 
-> Central design specification, visual hierarchy, anti-slop rules, HSL tokens, and Developer Experience (DX) benchmarks for the NERDS autonomous web engineering system and its documentation suite.
+> Master design intelligence specification, CLI ASCII box-art layout, HSL color tokens, anti-slop rules, and DX benchmarks for the NERDS autonomous web engineering stack.
 
 ---
 
 ## 1. Design Philosophy & Thesis
 
-- **Obsidian Engineering Aesthetic**: Deep dark obsidian neutral backgrounds (`hsl(220 15% 10%)`) with high-contrast text typography (`hsl(220 20% 95%)`) and razor-sharp 1px border frames (`hsl(220 15% 20%)`).
-- **Zero-Fluff High-Density Information Layout**: Immediate, high-signal information density. All CLI commands are formatted as copy-paste snippets with terminal syntax highlighting.
-- **Anti-Slop Visual Protocol**: Strict enforcement of [anti-slop-pro](file:///home/shlok/Projects/nerds/.nerds/skills/anti-slop-pro/SKILL.md) guidelines: zero AI marketing buzzwords (*"seamless"*, *"revolutionary"*, *"delightful"*), zero emojis in header titles/UI controls, zero generic blue-to-purple Tailwind default gradients, and zero blinking LED status dots.
+- **Obsidian & Cyber Terminal Aesthetic**: Precision double-line unicode box drawing (`╔═╗║╚═╝`) combined with single-line section dividers (`┌── ─ ──┐ │ └── ──┘`).
+- **Flush-Left Zero Margin Alignment**: All terminal box art, section titles, and status indicators align flush at column 0 (zero left/right margin padding).
+- **Anti-Slop Visual Protocol**: Strict enforcement of [anti-slop-pro](file:///home/shlok/Projects/nerds/.nerds/skills/anti-slop-pro/SKILL.md) guidelines: zero AI marketing buzzwords, zero blinking LED dot animations, zero UI emojis in section headers, solid 1px border cards, and curated ANSI color tokens.
 
 ---
 
-## 2. HSL Color Palette & Design Tokens
+## 2. CLI Terminal Layout & Box Art Specification
 
-```css
-:root {
-  /* Obsidian Base Neutrals */
-  --bg-obsidian-root: hsl(220 15% 8%);
-  --bg-obsidian-surface: hsl(220 15% 12%);
-  --bg-obsidian-card: hsl(220 15% 14%);
-  --border-obsidian: hsl(220 15% 22%);
+```
+╔══════════════════════════════════════════════════════════════╗
+║  ███╗   ██╗███████╗██████╗ ██████╗ ███████╗                  ║
+║  ████╗  ██║██╔════╝██╔══██╗██╔══██╗██╔════╝                  ║
+║  ██╔██╗ ██║█████╗  ██████╔╝██║  ██║███████╗                  ║
+║  ██║╚██╗██║██╔══╝  ██╔══██╗██║  ██║╚════██║                  ║
+║  ██║ ╚████║███████╗██║  ██║██████╔╝███████║                  ║
+║  ╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═════╝ ╚══════╝                  ║
+╚══════════════════════════════════════════════════════════════╝
+┌── TELEMETRY DIAGNOSTICS ──────────────────────────────────┐
+│  ► TARGET REPOSITORY : [URL]                              │
+│  ► EXECUTION MODE    : [ AUTONOMOUS / CONTINUOUS ]        │
+│  ► ROLE ARCHITECTURE : TEAM LEADER (SUPERVISORY AGENT-1)  │
+│  ► CO-WORKERS COUNT  : 0 (SINGLETON EXECUTION)            │
+└───────────────────────────────────────────────────────────┘
 
-  /* High Contrast Typography */
-  --text-primary: hsl(220 20% 96%);
-  --text-secondary: hsl(220 10% 70%);
-  --text-muted: hsl(220 10% 50%);
+┌── STAGE EXECUTION PIPELINE ───────────────────────────────┐
+│  [1/7] PRODUCT CEO         [████████████████████████] 100%│
+│  [2/7] ARCHITECT EM        [████████████████████████] 100%│
+│  [3/7] DESIGNER INCHARGE   [████████████████████████] 100%│
+│  [4/7] DESIGN EXPLORER     [████████████████████████] 100%│
+│  [5/7] QA LEAD             [████████████████████████] 100%│
+│  [6/7] SECURITY AUDITOR    [████████████████████████] 100%│
+│  [7/7] GIT NERD            [████████████████████████] 100%│
+└───────────────────────────────────────────────────────────┘
 
-  /* Accent & Status Tokens */
-  --accent-emerald: hsl(155 75% 45%);
-  --accent-cyan: hsl(190 85% 50%);
-  --accent-amber: hsl(38 92% 50%);
+┌── PROVISIONED INFRASTRUCTURE MATRIX ──────────────────────┐
+│  ✔ .gemini/instructions.md        [PROVISIONED]           │
+│  ✔ AGENTS.md                      [PROVISIONED]           │
+│  ✔ .nerds/instructions/01..07.md  [PROVISIONED - 7 ROLES]│
+│  ✔ .nerds/scripts/*.js            [PROVISIONED]           │
+│  ✔ .env.local                     [HARDENED 0600]         │
+└───────────────────────────────────────────────────────────┘
 
-  /* Code Block & Terminal Tokens */
-  --code-bg: hsl(220 18% 10%);
-  --code-border: hsl(220 15% 25%);
-  --code-text: hsl(155 70% 65%);
-}
+╔═══════════════════════════════════════════════════════════╗
+║ [SYSTEM STATUS] INITIALIZATION COMPLETE                   ║
+║ All 7 autonomous agent instructions & security locked.    ║
+║ Run `npx nerds` or prompt AGY directly to initiate.       ║
+╚═══════════════════════════════════════════════════════════╝
 ```
 
 ---
 
-## 3. Typography & Micro-Interactions
-
-- **Font Stack**: System UI Mono / Inter / JetBrains Mono for code blocks (`ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace`).
-- **Heading Rhythm**: `h1` (2.2rem, font-weight 700), `h2` (1.6rem, font-weight 600, border-bottom 1px solid), `h3` (1.2rem, font-weight 600).
-- **Code Block Specs**: Solid 1px border frame, copy-paste ready, zero prompt line artifacts (`$`), direct bash/JSON/markdown syntax highlighting.
-- **Execution Mode Status Formatting**:
-  - `[AUTONOMOUS MODE: Auto-Advancing to Stage X...]`: Monospaced emerald status pill (`var(--accent-emerald)`). Zero blinking dots or pulsing animations.
-  - `[INTERACTIVE MODE: Waiting for Stage X Approval Gate...]`: Monospaced amber status pill (`var(--accent-amber)`). Clean static border.
-
----
-
-## 4. 0-10 Quality Gate Audit Scorecard
+## 3. 0-10 Quality Gate Audit Scorecard
 
 | Dimension | Score | Criteria & Justification |
 | :--- | :--- | :--- |
-| **Visual Weight** | **10 / 10** | Clear visual hierarchy with distinct headers, code cards, and tables. Zero fluff or noisy visual distractions. |
-| **Typography** | **10 / 10** | Monospaced code blocks, high-contrast readable text body, crisp heading scale. |
-| **Spatial Rhythm** | **10 / 10** | Consistent vertical padding and horizontal alignment across sections and code blocks. |
-| **Micro-interactions**| **10 / 10** | Single-click copy-paste CLI commands for terminal execution. |
-| **Contrast** | **10 / 10** | Meets APCA / WCAG AAA contrast ratio standards for obsidian theme text against dark surface layers. |
+| **Visual Weight** | **10 / 10** | High-impact box art header with clean section division. Zero clutter. |
+| **Typography** | **10 / 10** | Monospaced block font logo (`███╗`), crisp column alignment. |
+| **Spatial Rhythm** | **10 / 10** | Consistent top/bottom spacing between section boxes, zero left margin shift. |
+| **Micro-interactions**| **10 / 10** | Smooth step progress during infrastructure file provisioning. |
+| **Contrast** | **10 / 10** | Bright cyan box borders, green status checkmarks, bold white logo on dark terminal background. |
 
 ---
 
-## 5. Developer Experience (DX) Benchmark
+## 4. Anti-Slop Compliance Check
 
-- **Target Persona**: Software engineers, tech leads, and autonomous AI agents using Antigravity IDE.
-- **Time-to-Hello-World (TTHW)**: **< 5 seconds**. A single copy-paste run of `curl -fsSL https://raw.githubusercontent.com/shlok377/nerds/main/install.sh | bash` provisions the workspace instantly.
-- **Magical Moment**: Launching AGY in terminal or IDE and watching NERDS autonomously process tasks through 7 Quality Gates with Chromium browser verification and micro-commits.
+- **NO EMOJIS IN CLI SECTION HEADERS**: Use clean unicode glyphs (`►`, `✔`, `[████]`) instead of raw emojis (`🚀`, `⚡`, `✨`).
+- **NO BADGE CLUTTER**: Removed right-hand side badges `[v2.4.0-CYBER]`, `[NET: LOCAL/CONNECTED]`, `[SYS: AUTONOMOUS_ENGINE]`, `[CORE: 7-ROLE_DIRECTOR]`.
+- **NO LEFT MARGIN PADDING**: All box borders start at column 0 for maximum terminal compatibility.

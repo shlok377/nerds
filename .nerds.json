@@ -1,20 +1,16 @@
 {
   "$schema": "https://raw.githubusercontent.com/nerds-stack/schema.json",
-  "repository": "git+https://github.com/shlok377/nerds.git",
+  "repository": "https://github.com/shlok377/nerds.git",
   "mode": "auto",
   "roleMode": "leader",
   "gitManager": {
     "enabled": true,
-    "agentAlias": "shlok377",
-    "githubUsername": "shlok377"
+    "agentAlias": "agent-1",
+    "githubUsername": ""
   },
   "team": {
     "count": 0,
     "coordinationBranch": null
   },
-  "coreValues": {
-    "designEngine": "NERDS Custom Design Intelligence v2.0",
-    "roleEngine": "NERDS Native 7-Role Pipeline (CEO, EM, Designer, Explorer, QA, Security, Git)"
-  },
-  "initializedAt": "2026-07-27T23:58:00.000Z"
+  "initializedAt": "2026-08-16T08:23:24.899Z"
 }
